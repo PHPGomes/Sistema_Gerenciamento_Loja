@@ -1,16 +1,25 @@
 import java.util.Scanner;
 
 public class Gerenciador {
+    private static Gerenciador gerenciadorUnico;
     private int variavel;
     private Estoque estoque;
-    Scanner leitura;
+    private Scanner leitura;
 
-    public Gerenciador(){
+
+    private Gerenciador(){
         leitura = new Scanner(System.in);
+    }
+
+    public static Gerenciador getInstance(){ //Padrão de projeto Singleton
+        if(gerenciadorUnico == null){
+            gerenciadorUnico = new Gerenciador();
+        }
+        return gerenciadorUnico;
     }
     
     public void iniciar(){
-        estoque = new Estoque();
+        estoque = Estoque.getIntance();
         variavel = 0;
         while(variavel != 4){
             exibirMenu();

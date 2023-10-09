@@ -2,11 +2,20 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Estoque {
+    private static Estoque estoqueUnico;
     private LinkedList<Sapato> estoque;
     Scanner leitura;
-    public Estoque(){
+
+    private Estoque(){
         estoque = new LinkedList<>();
         leitura = new Scanner(System.in);
+    }
+
+    public static Estoque getIntance(){ //Padrão de projeto Singleton
+        if(estoqueUnico == null){
+            estoqueUnico = new Estoque();
+        }
+        return estoqueUnico;
     }
 
     public void adicionarSapato(Sapato sapato){
