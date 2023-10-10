@@ -1,4 +1,4 @@
-package Código;
+package codigo;
 public class SapatoCorrida extends Sapato{
 
     public SapatoCorrida(int tamanho, int codigo, String marca){

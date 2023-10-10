@@ -1,4 +1,4 @@
-package Código;
+package codigo;
 public class Sapato {
 
     private int tamanho;

@@ -1,4 +1,4 @@
-package Código;
+package codigo;
 import java.util.LinkedList;
 import java.util.Scanner;
 
