@@ -1,3 +1,4 @@
+package Código;
 public class Sapato {
 
     private int tamanho;

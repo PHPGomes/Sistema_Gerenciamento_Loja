@@ -1,3 +1,4 @@
+package Código;
 import java.util.Scanner;
 
 public class Gerenciador {
