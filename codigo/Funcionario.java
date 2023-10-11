@@ -3,13 +3,11 @@ import java.util.LinkedList;
 
 public class Funcionario {
     private String nome;
-    private double valorVendas;
     private LinkedList<Sapato> vendas;
 
     public Funcionario(String nome){
         this.nome = nome;
         vendas = new LinkedList<>();
-        valorVendas = 0.00f;
     }
 
     public String getNome() {
@@ -17,9 +15,7 @@ public class Funcionario {
     }
 
     public double getValorVendas() {
-        valorVendas = calcularTotalVendas();
-
-
+        double valorVendas = calcularTotalVendas();
         return valorVendas;
     }
 
@@ -29,5 +25,10 @@ public class Funcionario {
             soma += s.getPreco();
         }
         return soma;
+    }
+
+    private void getRelatorio(){
+        System.out.printf("Relatorio funcionario/a %s\n",nome);
+        System.out.printf("Total de vendas R$%.2f",getValorVendas());
     }
 }
