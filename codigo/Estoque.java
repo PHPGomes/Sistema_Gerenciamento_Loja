@@ -41,7 +41,8 @@ public class Estoque {
         System.out.println("[2] Tipo");
         System.out.println("[3] Marca");
         System.out.println("[4] Tamanho");
-        System.out.println("[5] Todos");
+        System.out.println("[5] Faixa de Preco");
+        System.out.println("[6] Todos");
         metBusca = Integer.parseInt(leitura.nextLine());
         
         if(metBusca == 1){
@@ -61,18 +62,22 @@ public class Estoque {
         }
 
         else if(metBusca == 5){
+            buscarPreco();
+        }
+
+        else if(metBusca == 6){
             System.out.println(toString());
         }
     }
 
     public void buscarCodigo(){
         int codigo;
-        System.out.println("Digite o codigo:");
+        System.out.print("Digite o codigo: ");
         codigo = Integer.parseInt(leitura.nextLine());
-        System.out.println("Codigo     Tipo     Marca     Tamanho");
+        System.out.println("Codigo     Tipo     Marca     Tamanho     Preco");
         for (Sapato s : estoque) {
             if(s.getCodigo() == codigo){
-                System.out.println(s.toString());
+                System.out.println(s);
             }
         }
     }
@@ -90,43 +95,57 @@ public class Estoque {
         else if(escolha == 2){
             tipo = "Corrida";
         }
-        System.out.println("Codigo     Tipo     Marca     Tamanho");
+        System.out.println("Codigo     Tipo     Marca     Tamanho     Preco");
         for (Sapato s : estoque) {
             if(s.getTipo().equals(tipo)){
-                System.out.println(s.toString());
+                System.out.println(s);
             }
         }
     }
 
     public void buscarMarca(){
         String marca;
-        System.out.println("Digite a marca:");
+        System.out.print("Digite a marca:  ");
         marca = leitura.nextLine();
-        System.out.println("Codigo     Tipo     Marca     Tamanho");
+        System.out.println("Codigo     Tipo     Marca     Tamanho     Preco");
         for (Sapato s : estoque) {
             if(s.getMarca().equals(marca)){
-                System.out.println(s.toString());
+                System.out.println(s);
             }
         }
     }
 
     public void buscarTamanho(){
         int tamanho;
-        System.out.println("Digite o tamanho:");
+        System.out.print("Digite o tamanho: ");
         tamanho = Integer.parseInt(leitura.nextLine());
-        System.out.println("Codigo     Tipo     Marca     Tamanho");
+        System.out.println("Codigo     Tipo     Marca     Tamanho     Preco");
         for (Sapato s : estoque) {
             if(s.getTamanho() == tamanho){
-                System.out.println(s.toString());
+                System.out.println(s);
             }
         }
     }
 
 
+    public void buscarPreco(){
+        double precoMinimo, precoMaximo;
+        System.out.print("Digite o preco minimo: ");
+        precoMinimo = Double.parseDouble(leitura.nextLine());
+        System.out.print("Digite o preco maximo: ");
+        precoMaximo = Double.parseDouble(leitura.nextLine());
+        System.out.println("Codigo     Tipo     Marca     Tamanho     Preco");
+        for (Sapato s : estoque) {
+            if(s.getPreco() >= precoMinimo && s.getPreco() <= precoMaximo){
+                System.out.println(s);
+            }
+        }
+    }
+
     @Override
     public String toString(){
         String aux;
-        aux = "Codigo     Tipo     Marca     Tamanho\n";
+        aux = "Codigo     Tipo     Marca     Tamanho     Preco\n";
         for (Sapato s : estoque) {
             aux = aux + s + "\n";
         }

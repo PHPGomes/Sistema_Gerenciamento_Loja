@@ -26,7 +26,7 @@ public class Funcionario {
     private double calcularTotalVendas(){
         double soma = 0.00f;
         for (Sapato s : vendas) {
-        //    soma += s.getPreco(); // Adicionar essa função ao sapato! getPreco() e pedir na criação do estoque e ao filtro para dar para buscar por preço
+            soma += s.getPreco();
         }
         return soma;
     }

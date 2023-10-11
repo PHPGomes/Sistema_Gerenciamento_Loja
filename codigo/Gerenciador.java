@@ -71,11 +71,14 @@ public class Gerenciador {
 
     public void adicionarSapato(){
         int tamanho, codigo;
+        double preco;
         String tipo, marca;
         System.out.print("\nDigite a marca: ");
         marca = leitura.nextLine();
         System.out.print("\nDigite o tamanho: ");
         tamanho = Integer.parseInt(leitura.nextLine());
+        System.out.print("\nDigite o preco: ");
+        preco = Double.parseDouble(leitura.nextLine());
         System.out.print("\nDigite o codigo do produto: ");
         codigo = Integer.parseInt(leitura.nextLine());
         System.out.println("\nEscolha o tipo do produto:");
@@ -84,11 +87,11 @@ public class Gerenciador {
         tipo = leitura.nextLine();
 
         if(tipo.equals("1")){
-            estoque.adicionarSapato(new SapatoSocial(tamanho, codigo, marca));
+            estoque.adicionarSapato(new SapatoSocial(tamanho, codigo, marca,preco));
         }
 
         else if(tipo.equals("2")){
-            estoque.adicionarSapato(new SapatoCorrida(tamanho, codigo, marca));
+            estoque.adicionarSapato(new SapatoCorrida(tamanho, codigo, marca,preco));
         }
     }
 
