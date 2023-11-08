@@ -1,20 +1,20 @@
 package codigo;
 import java.util.Scanner;
 
-public class Gerenciador {
-    private static Gerenciador gerenciadorUnico;
+public class GerenciadorEstoque {
+    private static GerenciadorEstoque gerenciadorUnico;
     private int variavel;
     private Estoque estoque;
     private Scanner leitura;
 
 
-    private Gerenciador(){
+    private GerenciadorEstoque(){
         leitura = new Scanner(System.in);
     }
 
-    public static Gerenciador getInstance(){ //Padrão de projeto Singleton
+    public static GerenciadorEstoque getInstance(){ //Padrão de projeto Singleton
         if(gerenciadorUnico == null){
-            gerenciadorUnico = new Gerenciador();
+            gerenciadorUnico = new GerenciadorEstoque();
         }
         return gerenciadorUnico;
     }
@@ -46,7 +46,7 @@ public class Gerenciador {
         }
     }
 
-    public void execEscolha(int escolha){
+    private void execEscolha(int escolha){
         if(variavel == 1){ // adicionar sapato
             adicionarSapato();
         }

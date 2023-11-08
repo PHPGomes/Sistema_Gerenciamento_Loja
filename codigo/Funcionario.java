@@ -15,8 +15,7 @@ public class Funcionario {
     }
 
     public double getValorVendas() {
-        double valorVendas = calcularTotalVendas();
-        return valorVendas;
+        return calcularTotalVendas();
     }
 
     private double calcularTotalVendas(){
@@ -27,7 +26,7 @@ public class Funcionario {
         return soma;
     }
 
-    private void getRelatorio(){
+    public void getRelatorio(){
         System.out.printf("Relatorio funcionario/a %s\n",nome);
         System.out.printf("Total de vendas R$%.2f",getValorVendas());
     }

@@ -1,5 +1,5 @@
 package codigo;
-public class Sapato {
+public abstract class Sapato {
 
     private int tamanho;
     private int codigo;
@@ -30,13 +30,15 @@ public class Sapato {
         return tipo;
     }
 
+    public double getPreco() {
+        return preco;
+    }
+
     protected void setTipo(String tipo){
         this.tipo = tipo;
     }
 
-    public double getPreco() {
-        return preco;
-    }
+    
 
     @Override 
     public String toString(){

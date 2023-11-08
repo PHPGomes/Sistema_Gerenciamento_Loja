@@ -1,10 +1,10 @@
 package codigo;
 import java.util.LinkedList;
 
-public class GerenciaFuncionario {
+public class RelacaoFuncionarios {
     LinkedList<Funcionario> listaFuncionarios;
 
-    public GerenciaFuncionario(){
+    public RelacaoFuncionarios(){
         listaFuncionarios = new LinkedList<>();
 
     }

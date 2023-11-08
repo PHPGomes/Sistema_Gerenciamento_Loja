@@ -2,10 +2,12 @@ package codigo;
 import java.util.LinkedList; 
 
 public class CentralVendas {
-    private LinkedList<Sapato> sapatosVendidos;
+    private RelacaoFuncionarios relacaoFuncionarios;
+    private Estoque estoque;
 
     public CentralVendas(){
-        sapatosVendidos = new LinkedList<>();
+        relacaoFuncionarios = new RelacaoFuncionarios();
+        estoque = Estoque.getIntance();
     }
 
     
