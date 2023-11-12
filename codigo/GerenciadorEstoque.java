@@ -10,6 +10,7 @@ public class GerenciadorEstoque {
 
     private GerenciadorEstoque(){
         leitura = new Scanner(System.in);
+        estoque = Estoque.getIntance();
     }
 
     public static GerenciadorEstoque getInstance(){ //Padrão de projeto Singleton
@@ -20,7 +21,6 @@ public class GerenciadorEstoque {
     }
     
     public void iniciar(){
-        estoque = Estoque.getIntance();
         variavel = 0;
         while(variavel != 4){
             exibirMenu();

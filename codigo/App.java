@@ -1,7 +1,8 @@
 package codigo;
 public class App{
     public static void main(String[] args) {
-        GerenciadorEstoque gerenciadorEstoque =  GerenciadorEstoque.getInstance();
-        gerenciadorEstoque.iniciar();
+        Gerenciador gerenciador = new Gerenciador();
+        gerenciador.inciar();
     }
+
 }

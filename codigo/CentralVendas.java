@@ -10,6 +10,7 @@ public class CentralVendas {
         estoque = Estoque.getIntance();
     }
 
-    
-    
+    public void inciar(){
+
+    }
 }
