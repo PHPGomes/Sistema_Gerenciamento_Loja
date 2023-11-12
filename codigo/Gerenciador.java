@@ -17,12 +17,16 @@ public class Gerenciador {
 
     public void inciar(){
         String escolha = "";
-        while(!escolha.equals("1")  && !escolha.equals("2")){
-            System.out.println("[1] Gerenciar estoque");
-            System.out.println("[2] Realizar vendas");
-            escolha = leitura.nextLine();
+        while (!escolha.equals("3")) {
+            while(!escolha.equals("1")  && !escolha.equals("2")){
+                System.out.println("[1] Gerenciar estoque");
+                System.out.println("[2] Realizar vendas");
+                System.out.println("[3] Sair");
+                escolha = leitura.nextLine();
+                }
+            execEscolha(escolha);
+            escolha = "";
             }
-        execEscolha(escolha);
     }
 
     private void execEscolha(String escolha){

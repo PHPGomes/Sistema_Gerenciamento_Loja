@@ -160,6 +160,23 @@ public class Estoque {
         }
     }
 
+    public Sapato getSapato(int codigo){ //retorno um clone de sapato para não quebra o encapsulamento
+        Sapato s2;
+        for (Sapato s : estoque) {
+            if (s.getCodigo() == codigo) {
+
+                if(s.getTipo().equals("Corrida")){
+                    s2 = new SapatoCorrida(s.getTamanho(), s.getCodigo(), s.getMarca(), s.getPreco());
+                }
+                else{
+                    s2 = new SapatoSocial(s.getTamanho(), s.getCodigo(), s.getMarca(), s.getPreco());
+                }
+                return s2;
+            }
+        }
+        return null;
+    }
+
 
     @Override
     public String toString(){

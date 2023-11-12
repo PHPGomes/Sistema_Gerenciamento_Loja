@@ -18,6 +18,10 @@ public class Funcionario {
         return calcularTotalVendas();
     }
 
+    public void adiconarVenda(Sapato s){
+        vendas.add(s);
+    }
+
     private double calcularTotalVendas(){
         double soma = 0.00f;
         for (Sapato s : vendas) {
@@ -28,6 +32,17 @@ public class Funcionario {
 
     public void getRelatorio(){
         System.out.printf("Relatorio funcionario/a %s\n",nome);
-        System.out.printf("Total de vendas R$%.2f",getValorVendas());
+        System.out.printf("Total de vendas R$%.2f\n",getValorVendas());
+        System.out.println("Produtos vendidos: ");
+        System.out.println("Codigo     Tipo     Marca     Tamanho     Preco\n");
+        for (Sapato s : vendas) {
+            System.out.println(s);
+        }
     }
+
+    @Override
+    public String toString() {
+        return getNome();
+    }
+
 }
