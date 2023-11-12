@@ -142,6 +142,25 @@ public class Estoque {
         }
     }
 
+
+    public void gerarRelatorio(){
+        System.out.println("Relatorio Do Estoque:");
+        if(estoque.size() == 0){
+            System.out.println("O Estoque esta vazio");
+        }
+        
+        else if(estoque.size() == 1){
+            System.out.println("Atualmente o estoque tem um total de 1 item\n");
+            System.out.println(toString()); 
+        }
+
+        else{
+            System.out.printf("Atualmente o estoque tem um total de %d itens\n\n",estoque.size());
+            System.out.println(toString()); 
+        }
+    }
+
+
     @Override
     public String toString(){
         String aux;

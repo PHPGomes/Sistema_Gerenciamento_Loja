@@ -22,7 +22,7 @@ public class GerenciadorEstoque {
     
     public void iniciar(){
         variavel = 0;
-        while(variavel != 4){
+        while(variavel != 5){
             exibirMenu();
             lerEscolha();
             execEscolha(variavel);
@@ -35,12 +35,13 @@ public class GerenciadorEstoque {
         System.out.println("[1] Adicionar Sapato");
         System.out.println("[2] Remover Sapato");
         System.out.println("[3] Buscar Sapato");
-        System.out.println("[4] Sair");
+        System.out.println("[4] Gerar Relatorio Do Estoque");
+        System.out.println("[5] Sair");
     }
 
     private void lerEscolha(){
         variavel = Integer.parseInt(leitura.nextLine());
-        if(variavel != 1 && variavel != 2 && variavel != 3 && variavel != 4){
+        if(variavel != 1 && variavel != 2 && variavel != 3 && variavel != 4 && variavel != 5){
             System.out.println("Escolha não compativel!\nDigite novamente: ");
             lerEscolha();
         }
@@ -66,6 +67,10 @@ public class GerenciadorEstoque {
 
         else if(variavel == 3){ //buscar sapato
             estoque.buscarSapato();
+        }
+
+        else if(variavel == 4){
+            estoque.gerarRelatorio();//gerar relatorio
         }
     }
 
