@@ -1,5 +1,4 @@
 package codigo;
-import java.util.LinkedList;
 import java.util.Scanner; 
 
 public class CentralVendas {
@@ -54,11 +53,15 @@ public class CentralVendas {
         }
 
         else if(escolha.equals("3")){
-            //contratar funcionario
+            System.out.println("Digite o nome do funcionario:");
+            String nome = leitura.nextLine();
+            relacaoFuncionarios.adicionarFuncionario(new Funcionario(nome));
         }
 
         else if(escolha.equals("4")){
-            //demitir funcionario
+            System.out.println("Digite o nome do funcionario:");
+            String nome = leitura.nextLine();
+            relacaoFuncionarios.demitirFuncionario(nome);
         }
 
         else if(escolha.equals("5")){

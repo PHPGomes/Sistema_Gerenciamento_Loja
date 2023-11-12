@@ -46,7 +46,7 @@ public class RelacaoFuncionarios {
     }
 
     public void relatorioFuncionarios(){
-        System.out.println("Relatorio dos funcionarios:");
+        System.out.println("Relatorio dos funcionarios:\n");
         for (Funcionario f : listaFuncionarios) {
             f.getRelatorio();
             System.out.println("\n");

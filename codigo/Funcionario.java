@@ -31,8 +31,8 @@ public class Funcionario {
     }
 
     public void getRelatorio(){
-        System.out.printf("Relatorio funcionario/a %s\n",nome);
-        System.out.printf("Total de vendas R$%.2f\n",getValorVendas());
+        System.out.printf("Relatorio funcionario/a %s\n\n",nome);
+        System.out.printf("Total de vendas R$%.2f\n\n",getValorVendas());
         System.out.println("Produtos vendidos: ");
         System.out.println("Codigo     Tipo     Marca     Tamanho     Preco\n");
         for (Sapato s : vendas) {
