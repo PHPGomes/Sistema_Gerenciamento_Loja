@@ -17,7 +17,7 @@ public class Gerenciador {
 
     public void inciar(){
         String escolha = "";
-        while(escolha != "1" && escolha != "2"){
+        while(!escolha.equals("1")  && !escolha.equals("2")){
             System.out.println("[1] Gerenciar estoque");
             System.out.println("[2] Realizar vendas");
             escolha = leitura.nextLine();
@@ -26,10 +26,10 @@ public class Gerenciador {
     }
 
     private void execEscolha(String escolha){
-        if(escolha == "1"){
+        if(escolha.equals("1")){
             gerenciadorEstoque.iniciar();
         }
-        else if(escolha == "2"){
+        else if(escolha.equals("2")){
             centralVendas.inciar();
         }
 
