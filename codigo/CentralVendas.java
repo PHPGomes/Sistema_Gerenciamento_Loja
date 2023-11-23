@@ -47,6 +47,11 @@ public class CentralVendas {
             int codigo;
             System.out.println("Digite o nome do funcionario que realizou a venda");
             nome = leitura.nextLine();
+            while(!relacaoFuncionarios.tem(nome)){
+                System.out.println("Funcionario nao encontrado");
+                System.out.println("Digite o nome correto do funcionario que realizou a venda");
+                nome = leitura.nextLine();
+            }
             System.out.println("Digite o codigo do produto");
             codigo = Integer.parseInt(leitura.nextLine());
             realizarVenda(codigo, buscarFuncionario(nome)); 

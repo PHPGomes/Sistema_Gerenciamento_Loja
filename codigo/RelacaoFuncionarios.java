@@ -53,4 +53,14 @@ public class RelacaoFuncionarios {
         }
     }
 
+    public boolean tem(String nome){
+        for (Funcionario f : listaFuncionarios) {
+            if(f.getNome().equals(nome)){
+                return true;
+            }
+        }
+        return false;
+
+    }
+
 }
