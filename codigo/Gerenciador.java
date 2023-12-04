@@ -6,6 +6,7 @@ public class Gerenciador {
    private GerenciadorEstoque gerenciadorEstoque;
    private CentralVendas centralVendas;
    private Scanner leitura;
+   private String escolha;
     
 
    public Gerenciador(){
@@ -16,25 +17,31 @@ public class Gerenciador {
     
 
     public void inciar(){
-        String escolha = "";
+        escolha = "";
         while (!escolha.equals("3")) {
-            while(!escolha.equals("1")  && !escolha.equals("2")){
+            while(!escolha.equals("1")  && !escolha.equals("2") && !escolha.equals("3")){
                 System.out.println("[1] Gerenciar estoque");
                 System.out.println("[2] Realizar vendas");
                 System.out.println("[3] Sair");
                 escolha = leitura.nextLine();
                 }
             execEscolha(escolha);
-            escolha = "";
+            
             }
     }
 
-    private void execEscolha(String escolha){
-        if(escolha.equals("1")){
+    private void execEscolha(String opc){
+        if(opc.equals("1")){
+            escolha = "";
             gerenciadorEstoque.iniciar();
+            
+            
         }
-        else if(escolha.equals("2")){
+        else if(opc.equals("2")){
+            escolha = "";
             centralVendas.inciar();
+            
+            
         }
 
     }
