@@ -1,13 +1,6 @@
 package codigo;
 
-/*public class App{
-    public static void main(String[] args) {
-        Gerenciador gerenciador = new Gerenciador();
-        gerenciador.inciar();
-    }
 
-}
-*/
 
 //Bibliotecas gráficas para java
 import javax.swing.*;
@@ -20,6 +13,7 @@ public class SistemaLoja extends JFrame {
     GerenciadorEstoque gerenciadorEstoque = GerenciadorEstoque.getInstance();
     CentralVendas centralVendas = new CentralVendas();
     //Cria instância da classe e configura o tamanho da janela e a torna visvel
+
     public static void main(String[] args) {
          
         SwingUtilities.invokeLater(new Runnable() {
@@ -76,6 +70,8 @@ public class SistemaLoja extends JFrame {
         });
 
         //vender
+
+        
         btnSell.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -362,6 +358,12 @@ public class SistemaLoja extends JFrame {
         private void exibirRealizarVenda() {
             JPanel panel = new JPanel();
             panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+            JLabel welcomeVendaLabel = new JLabel("Escolha uma opção:");
+            welcomeVendaLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+            panel.add(welcomeVendaLabel);
+            welcomeVendaLabel.setFont(new Font("Arial", Font.BOLD,16));
+            panel.add(Box.createVerticalStrut(20));
     
             JButton btnShowStock = new JButton("Exibir Estoque");
             JButton btnSell = new JButton("Realizar Venda");
