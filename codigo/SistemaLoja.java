@@ -189,7 +189,7 @@ public class SistemaLoja extends JFrame {
                     //int tamanho,int codigo,double preco,String tipo,String marca
 
                     String tipo = "1";
-                    gerenciadorEstoque.adicionarSapato(Integer.parseInt(tamanhoField.getText()) ,Integer.parseInt(codigoField.getText()),Double. parseDouble(precoField.getText()),tipo,marcaField.getText());
+                    gerenciadorEstoque.adicionarSapato(Integer.parseInt(tamanhoField.getText()) ,Integer.parseInt(codigoField.getText()),Double.parseDouble(precoField.getText()),tipo,marcaField.getText());
 
                     //volta ao gerenciador
                     
