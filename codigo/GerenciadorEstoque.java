@@ -21,7 +21,13 @@ public class GerenciadorEstoque {
     }
     
     
+    public int getTamanhoEstoque(){
+        return estoque.getTamanhoEstoque();
+    }
 
+    public String getSapatoPosicao(int posicao){
+        return estoque.getSapatoPosicao(posicao);
+    }
   
 
     private void lerEscolha(){

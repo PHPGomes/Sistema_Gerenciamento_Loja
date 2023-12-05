@@ -19,6 +19,10 @@ public class Estoque {
         return estoqueUnico;
     }
 
+    public int getTamanhoEstoque(){
+        return estoque.size();
+    }
+
     public void adicionarSapato(Sapato sapato){
         estoque.add(sapato);
         System.out.println("Sapato adicionado! \n\n");
@@ -102,6 +106,7 @@ public class Estoque {
             }
         }
     }
+    
 
     public void buscarMarca(){
         String marca;
@@ -175,6 +180,11 @@ public class Estoque {
             }
         }
         return null;
+    }
+
+    public String getSapatoPosicao(int pos){
+        Sapato s = estoque.get(pos);
+        return s.toString();
     }
 
 
