@@ -334,6 +334,9 @@ public class SistemaLoja extends JFrame {
             exibirPainel(panel);
         }
     
+
+
+
         private void exibirRelatorioEstoque() {
             JPanel panel = new JPanel();
             panel.setLayout(new BorderLayout());
@@ -351,6 +354,10 @@ public class SistemaLoja extends JFrame {
             exibirPainel(panel);
         }
     
+
+
+
+        
 
         private void exibirRealizarVenda() {
             JPanel panel = new JPanel();
