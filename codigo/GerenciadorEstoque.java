@@ -57,6 +57,14 @@ public class GerenciadorEstoque {
         }
     }
 
+
+
+    public void removerSapato(int codigo){
+        estoque.removerSapato(codigo);
+        estoque.gerarRelatorio();
+    }
+
+
     public void adicionarSapato(int tamanho,int codigo,double preco,String tipo,String marca){
         
         

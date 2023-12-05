@@ -17,15 +17,15 @@ import java.awt.event.ActionListener;
 
 //JFrame é uma classe com janela GUI
 public class SistemaLoja extends JFrame {
-    GerenciadorEstoque gerenciadorEstoque = GerenciadorEstoque.getInstance();;
+    GerenciadorEstoque gerenciadorEstoque = GerenciadorEstoque.getInstance();
+    CentralVendas centralVendas = new CentralVendas();
     //Cria instância da classe e configura o tamanho da janela e a torna visvel
     public static void main(String[] args) {
          
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                
-                CentralVendas centralVendas = new CentralVendas();
+
                 SistemaLoja sistemaLoja = new SistemaLoja();
                 sistemaLoja.setSize(600, 500);
                 sistemaLoja.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -163,6 +163,7 @@ public class SistemaLoja extends JFrame {
             exibirPainel(panel);
         }
     
+        //adicionar sapato Feito!
         private void exibirAdicionarSapato() {
             JPanel panel = new JPanel();
             panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -234,7 +235,7 @@ public class SistemaLoja extends JFrame {
 
 
     
-   
+        //remover sapato Feito!
         private void exibirRemoverSapato() {
             JPanel panel = new JPanel();
             panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -248,6 +249,10 @@ public class SistemaLoja extends JFrame {
             btnRemove.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+
+                    //remove sapato do estoque
+                    gerenciadorEstoque.removerSapato(Integer.parseInt(codigoField.getText()));
+
                     exibirGerenciarEstoque();
                 }
             });
@@ -266,6 +271,7 @@ public class SistemaLoja extends JFrame {
             exibirPainel(panel);
         }
     
+
         private void exibirBuscarSapato() {
             JPanel panel = new JPanel();
             panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -430,6 +436,8 @@ public class SistemaLoja extends JFrame {
             exibirPainel(panel);
         }
     
+
+        //contratar funcionario Feito!!
         private void exibirContratarFuncionario() {
             JPanel panel = new JPanel();
             panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -443,6 +451,10 @@ public class SistemaLoja extends JFrame {
             btnOK.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+
+                    //contrata funcionario
+                    centralVendas.contratarFuncionario(nomeField.getText());
+
                     exibirRealizarVenda();
                 }
             });
@@ -461,6 +473,8 @@ public class SistemaLoja extends JFrame {
             exibirPainel(panel);
         }
     
+
+        //demitir funcionario Feito!
         private void exibirDemitirFuncionario() {
             JPanel panel = new JPanel();
             panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -474,6 +488,10 @@ public class SistemaLoja extends JFrame {
             btnOK.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+
+                    //demitir funcionario
+                    centralVendas.demitirFuncionario(nomeField.getText());
+
                     exibirRealizarVenda();
                 }
             });
@@ -492,6 +510,11 @@ public class SistemaLoja extends JFrame {
             exibirPainel(panel);
         }
     
+
+
+
+
+
         private void exibirListaFuncionarios() {
             JPanel panel = new JPanel();
             panel.setLayout(new BorderLayout());

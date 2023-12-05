@@ -13,29 +13,32 @@ public class CentralVendas {
         estoque = Estoque.getIntance();
     }
 
-    public void inciar(){
-        String escolha = "";
-        while(!escolha.equals("7")){
-            exibirMenu();
-            escolha = lerEscolha();
-            execEscolha(escolha);
-            }
-    }
 
-    private void exibirMenu(){
-        System.out.println("[1] Exibir Estoque");
-        System.out.println("[2] Realizar Venda");
-        System.out.println("[3] Contratar Funcionario");
-        System.out.println("[4] Demitir Funcionario");
-        System.out.println("[5] Exibir Lista Funcinaros");
-        System.out.println("[6] Relatorio Funcionarios");
-        System.out.println("[7] Sair");
-    }
+    
+    public void contratarFuncionario(String nome){
+        relacaoFuncionarios.adicionarFuncionario(new Funcionario(nome));
+        relacaoFuncionarios.exibirListaFuncionarios();
+    }  
 
-    private String lerEscolha(){
-        String escolha = leitura.nextLine();
-        return escolha;
+    public void demitirFuncionario(String nome){
+        relacaoFuncionarios.demitirFuncionario(nome);
+        relacaoFuncionarios.exibirListaFuncionarios();
     }
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private void execEscolha(String escolha){
         if(escolha.equals("1")){
@@ -57,17 +60,8 @@ public class CentralVendas {
             realizarVenda(codigo, buscarFuncionario(nome)); 
         }
 
-        else if(escolha.equals("3")){
-            System.out.println("Digite o nome do funcionario:");
-            String nome = leitura.nextLine();
-            relacaoFuncionarios.adicionarFuncionario(new Funcionario(nome));
-        }
-
-        else if(escolha.equals("4")){
-            System.out.println("Digite o nome do funcionario:");
-            String nome = leitura.nextLine();
-            relacaoFuncionarios.demitirFuncionario(nome);
-        }
+        
+        
 
         else if(escolha.equals("5")){
             relacaoFuncionarios.exibirListaFuncionarios();

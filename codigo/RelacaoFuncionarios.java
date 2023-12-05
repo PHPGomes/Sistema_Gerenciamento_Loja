@@ -6,8 +6,7 @@ public class RelacaoFuncionarios {
 
     public RelacaoFuncionarios(){
         listaFuncionarios = new LinkedList<>();
-        adicionarFuncionario(new Funcionario("pedro")); //para testes
-        adicionarFuncionario(new Funcionario("gomes")); //para testes
+
     }
 
     public void adicionarFuncionario(Funcionario funcionario){
