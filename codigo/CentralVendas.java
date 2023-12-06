@@ -41,6 +41,12 @@ public class CentralVendas {
         return relacaoFuncionarios.getNumProdutosFuncionarioPos(c);
     }
 
+    public String getProdutoPosFuncionario(int pFuncionario, int pProduto){
+        return relacaoFuncionarios.getProdutoPosFuncionario(pFuncionario, pProduto);
+    }
+
+    
+
 
 /*        if(escolha.equals("2")){
             String nome;

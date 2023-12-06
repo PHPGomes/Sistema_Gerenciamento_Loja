@@ -51,6 +51,9 @@ public class RelacaoFuncionarios {
 
     }
 
+    public String getProdutoPosFuncionario(int pFuncionario, int pProduto){
+        return listaFuncionarios.get(pFuncionario).getProdutoPos(pProduto);
+    }
     
 
     public String getRelatorioValorVendidoFuncionarioPos(int p){

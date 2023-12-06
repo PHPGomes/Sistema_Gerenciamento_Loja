@@ -646,10 +646,15 @@ public class SistemaLoja extends JFrame {
                 panel.add(new JLabel(centralVendas.getRelatorioValorVendidoFuncionarioPos(c)));
                 int numProdutosVendidos = centralVendas.getNumProdutosFuncionarioPos(c);
                 if(numProdutosVendidos >= 1){
+                    panel.add(new JLabel("Lista de Produtos Vendidos:"));
                     panel.add(new JLabel("Código     Tipo     Marca     Tamanho     Preço"));
                     }
+                else{
+                    panel.add(new JLabel("Nenhum Produto Vendido!"));
+                }
+
                 for(int a = 0; a < numProdutosVendidos; a++){
-                    
+                    panel.add(new JLabel(centralVendas.getProdutoPosFuncionario(c, a)));
                 }
                 panel.add(Box.createVerticalStrut(10));
             }

@@ -43,6 +43,8 @@ public class Funcionario {
         return vendas.get(c).toString();
     }
 
+
+
     @Override
     public String toString() {
         return getNome();
