@@ -58,7 +58,7 @@ public class SistemaLoja extends JFrame {
             panel.add(Box.createVerticalStrut(20)); 
 
             JButton btnManageStock = new JButton("Gerenciar Estoque");
-            JButton btnSell = new JButton("Realizar Venda");
+            JButton btnSell = new JButton("   Realizar Venda    ");
             JButton btnExit = new JButton("Sair");
             btnManageStock.setAlignmentX(Component.CENTER_ALIGNMENT);
             btnSell.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -113,10 +113,10 @@ public class SistemaLoja extends JFrame {
             chooseOptionLabel.setFont(new Font("Arial", Font.BOLD,16));
             panel.add(Box.createVerticalStrut(20)); 
     
-            JButton btnAddShoe = new JButton("Adicionar Sapato");
-            JButton btnRemoveShoe = new JButton("Remover Sapato");
-            JButton btnSearchShoe = new JButton("Buscar Sapato");
-            JButton btnStockReport = new JButton("Gerar Relatório de Estoque");
+            JButton btnAddShoe = new JButton("         Adicionar Sapato          ");
+            JButton btnRemoveShoe = new JButton("          Remover Sapato          ");
+            JButton btnSearchShoe = new JButton("             Buscar Sapato           ");
+            JButton btnStockReport = new JButton("Gerar Relatório de Estoque ");
             JButton btnBack = new JButton("Sair");
             btnAddShoe.setAlignmentX(Component.CENTER_ALIGNMENT);
             btnRemoveShoe.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -410,15 +410,25 @@ public class SistemaLoja extends JFrame {
             panel.add(welcomeVendaLabel);
             welcomeVendaLabel.setFont(new Font("Arial", Font.BOLD,16));
             panel.add(Box.createVerticalStrut(20));
-    
-            JButton btnShowStock = new JButton("Exibir Estoque");
-            JButton btnSell = new JButton("Realizar Venda");
-            JButton btnHireEmployee = new JButton("Contratar Funcionário");
-            JButton btnFireEmployee = new JButton("Demitir Funcionário");
+            
+
+            JButton btnShowStock = new JButton("              Exibir Estoque           ");
+                                                    
+            JButton btnSell = new JButton("            Realizar Venda           ");
+            JButton btnHireEmployee = new JButton("      Contratar Funcionário     ");
+            JButton btnFireEmployee = new JButton("        Demitir Funcionário        ");
             JButton btnShowEmployees = new JButton("Exibir Lista de Funcionários");
-            JButton btnEmployeeReport = new JButton("Relatório de Funcionário");
+            JButton btnEmployeeReport = new JButton("    Relatório de Funcionário   ");
             JButton btnExit = new JButton("Sair");
     
+            btnShowStock.setAlignmentX(Component.CENTER_ALIGNMENT);
+            btnSell.setAlignmentX(Component.CENTER_ALIGNMENT);
+            btnHireEmployee.setAlignmentX(Component.CENTER_ALIGNMENT);
+            btnFireEmployee.setAlignmentX(Component.CENTER_ALIGNMENT);
+            btnShowEmployees.setAlignmentX(Component.CENTER_ALIGNMENT);
+            btnEmployeeReport.setAlignmentX(Component.CENTER_ALIGNMENT);
+            btnExit.setAlignmentX(Component.CENTER_ALIGNMENT);
+
             btnShowStock.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -463,11 +473,17 @@ public class SistemaLoja extends JFrame {
             });
     
             panel.add(btnShowStock);
+            panel.add(Box.createVerticalStrut(10));
             panel.add(btnSell);
+            panel.add(Box.createVerticalStrut(10));
             panel.add(btnHireEmployee);
+            panel.add(Box.createVerticalStrut(10));
             panel.add(btnFireEmployee);
+            panel.add(Box.createVerticalStrut(10));
             panel.add(btnShowEmployees);
+            panel.add(Box.createVerticalStrut(10));
             panel.add(btnEmployeeReport);
+            panel.add(Box.createVerticalStrut(10));
             panel.add(btnExit);
     
             exibirPainel(panel);
@@ -647,7 +663,10 @@ public class SistemaLoja extends JFrame {
             
 
             for(int c = 0; c < numFuncionarios ; c++){
-                panel.add(new JLabel(centralVendas.getNomeFuncionarioPos(c)));
+
+                JLabel funcionario = new JLabel(centralVendas.getNomeFuncionarioPos(c));
+                funcionario.setAlignmentX(Component.CENTER_ALIGNMENT);
+                panel.add(funcionario);
                 panel.add(Box.createVerticalStrut(10));
             }
 
@@ -669,6 +688,8 @@ public class SistemaLoja extends JFrame {
             panel.add(cabecalho);
             panel.add(Box.createVerticalStrut(20));
 
+
+
              
             int numFuncionarios = centralVendas.numFuncionarios();
             if(numFuncionarios < 1){
@@ -688,22 +709,41 @@ public class SistemaLoja extends JFrame {
             });
             btnBack.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-            
 
             for(int c = 0; c < numFuncionarios ; c++){
-                panel.add(new JLabel(centralVendas.getNomeFuncionarioPos(c)));
-                panel.add(new JLabel(centralVendas.getRelatorioValorVendidoFuncionarioPos(c)));
+
+
+
+                JLabel nome = new JLabel(centralVendas.getNomeFuncionarioPos(c));
+                nome.setAlignmentX(Component.CENTER_ALIGNMENT);
+                panel.add(nome);
+                JLabel valorVendido = new JLabel(centralVendas.getRelatorioValorVendidoFuncionarioPos(c));
+                valorVendido.setAlignmentX(Component.CENTER_ALIGNMENT);
+                panel.add(valorVendido);
+
+
+
                 int numProdutosVendidos = centralVendas.getNumProdutosFuncionarioPos(c);
                 if(numProdutosVendidos >= 1){
-                    panel.add(new JLabel("Lista de Produtos Vendidos:"));
-                    panel.add(new JLabel("Código     Tipo     Marca     Tamanho     Preço"));
+                    JLabel tituloProdutosVendidos = new JLabel("Lista de Produtos Vendidos:");
+                    tituloProdutosVendidos.setAlignmentX(Component.CENTER_ALIGNMENT);
+                    panel.add(tituloProdutosVendidos);
+                    JLabel cabecalhoProdutosVendidos = new JLabel("Código     Tipo     Marca     Tamanho     Preço");
+                    cabecalhoProdutosVendidos.setAlignmentX(Component.CENTER_ALIGNMENT);
+                    panel.add(cabecalhoProdutosVendidos);
+
                     }
                 else{
-                    panel.add(new JLabel("Nenhum Produto Vendido!"));
+                    JLabel nenhumProdutoVendido = new JLabel("Nenhum Produto Vendido!");
+                    nenhumProdutoVendido.setAlignmentX(Component.CENTER_ALIGNMENT);
+                    panel.add(nenhumProdutoVendido);
                 }
 
+
                 for(int a = 0; a < numProdutosVendidos; a++){
-                    panel.add(new JLabel(centralVendas.getProdutoPosFuncionario(c, a)));
+                    JLabel produtoVendido = new JLabel(centralVendas.getProdutoPosFuncionario(c, a));
+                    produtoVendido.setAlignmentX(Component.BOTTOM_ALIGNMENT);
+                    panel.add(produtoVendido);
                 }
                 panel.add(Box.createVerticalStrut(10));
             }
