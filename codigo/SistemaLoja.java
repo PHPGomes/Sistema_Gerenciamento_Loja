@@ -824,9 +824,16 @@ public class SistemaLoja extends JFrame {
                 cabecalho.setAlignmentX(Component.CENTER_ALIGNMENT);
                 panel.add(cabecalho);
 
-                JLabel sapato = new JLabel(gerenciadorEstoque.buscarCodigo(codigo));
-                sapato.setAlignmentX(Component.CENTER_ALIGNMENT);
-                panel.add(sapato);
+                int tamEstoque = gerenciadorEstoque.getTamanhoEstoque();
+                for(int c = 0 ; c < tamEstoque ; c++){
+                    if(!gerenciadorEstoque.compararCodigoPosicao(codigo,c).equals("0")){
+                        JLabel sapato = new JLabel(gerenciadorEstoque.compararCodigoPosicao(codigo,c));
+                        sapato.setAlignmentX(Component.CENTER_ALIGNMENT);
+                        panel.add(sapato);
+                    }
+                }
+
+                
             }
 
             else{

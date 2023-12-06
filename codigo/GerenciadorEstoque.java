@@ -28,6 +28,10 @@ public class GerenciadorEstoque {
     public String getSapatoPosicao(int posicao){
         return estoque.getSapatoPosicao(posicao);
     }
+
+    compararCodigoPosicao(int codigo, int posicao){
+        return estoque.compararCodigoPosicao(codigo, posicao);
+    }
   
     
 

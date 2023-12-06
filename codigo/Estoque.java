@@ -81,6 +81,13 @@ public class Estoque {
         return "0";
     }
 
+    public String compararCodigoPosicao(int codigo, int posicao){`
+        if(estoque.get(posicao).getCodigo() == codigo){
+            return estoque.get(posicao).toString();
+        }
+        return "0";
+    }
+
     public void buscarTipo(){
         String tipo = "";
         int escolha;
