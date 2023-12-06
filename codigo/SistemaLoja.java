@@ -445,11 +445,19 @@ public class SistemaLoja extends JFrame {
             exibirPainel(panel);
         }
     
+
         private void exibirExibirEstoque() {
             JPanel panel = new JPanel();
-            panel.setLayout(new BorderLayout());
-    
-     
+            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));;
+            
+            
+            JLabel titulo = new JLabel("Estoque:");
+            titulo.setAlignmentX(Component.CENTER_ALIGNMENT);
+            JLabel cabecalho = new JLabel("Código     Tipo     Marca     Tamanho     Preço");
+            cabecalho.setAlignmentX(Component.CENTER_ALIGNMENT);
+            int tamEstoque = gerenciadorEstoque.getTamanhoEstoque();
+
+
             JButton btnBack = new JButton("Voltar");
             btnBack.addActionListener(new ActionListener() {
                 @Override
@@ -458,11 +466,57 @@ public class SistemaLoja extends JFrame {
                 }
             });
     
+
+
+            panel.add(titulo);
+            panel.add(cabecalho);
+
+            for(int i=0 ; i< tamEstoque; i++){
+                
+                JLabel aux = new JLabel(gerenciadorEstoque.getSapatoPosicao(i));
+                aux.setAlignmentX(Component.CENTER_ALIGNMENT);
+                panel.add(aux);
+            }
+
             panel.add(btnBack, BorderLayout.SOUTH);
+
     
             exibirPainel(panel);
         }
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         //contratar funcionario Feito!!
         private void exibirContratarFuncionario() {
