@@ -25,10 +25,24 @@ public class CentralVendas {
         relacaoFuncionarios.exibirListaFuncionarios();
     }
    
+    public int numFuncionarios(){
+        return relacaoFuncionarios.numFuncionarios();
+    }
+
+    public String getNomeFuncionarioPos(int p){
+        return relacaoFuncionarios.getNomeFuncionarioPos(p);
+    }
+
+    public String getRelatorioValorVendidoFuncionarioPos(int p){
+        return relacaoFuncionarios.getRelatorioValorVendidoFuncionarioPos(p);
+    }
+
+    public int getNumProdutosFuncionarioPos(int c){
+        return relacaoFuncionarios.getNumProdutosFuncionarioPos(c);
+    }
 
 
-
-        if(escolha.equals("2")){
+/*        if(escolha.equals("2")){
             String nome;
             int codigo;
             System.out.println("Digite o nome do funcionario que realizou a venda");
@@ -42,18 +56,8 @@ public class CentralVendas {
             codigo = Integer.parseInt(leitura.nextLine());
             realizarVenda(codigo, buscarFuncionario(nome)); 
         }
-
-        
-        
-
-        else if(escolha.equals("5")){
-            relacaoFuncionarios.exibirListaFuncionarios();
-        }
-
-        else if(escolha.equals("6")){
-            relacaoFuncionarios.relatorioFuncionarios();
-        }
-
+ */
+       
     
 
     private Funcionario buscarFuncionario(String nome){

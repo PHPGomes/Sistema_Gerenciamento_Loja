@@ -574,10 +574,9 @@ public class SistemaLoja extends JFrame {
 
             JLabel cabecalho = new JLabel("Lista Funcionarios:");
             cabecalho.setAlignmentX(Component.CENTER_ALIGNMENT);
-            panel.add(cabecalho);
             cabecalho.setFont(new Font("Arial", Font.BOLD,16));
-            panel.add(Box.createVerticalStrut(20)); 
-            
+             
+            int numFuncionarios = centralVendas.numFuncionarios();
 
             
     
@@ -589,7 +588,13 @@ public class SistemaLoja extends JFrame {
                 }
             });
     
+            panel.add(cabecalho);
+            panel.add(Box.createVerticalStrut(20));
 
+            for(int c = 0; c < numFuncionarios ; c++){
+                panel.add(new JLabel(centralVendas.getNomeFuncionarioPos(c)));
+                panel.add(Box.createVerticalStrut(10));
+            }
 
 
             panel.add(btnBack, BorderLayout.SOUTH);
@@ -615,25 +620,15 @@ public class SistemaLoja extends JFrame {
         private void exibirRelatorioFuncionario() {
             JPanel panel = new JPanel();
             panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-    
-        
-
-
-        JLabel cabecalho = new JLabel("Relatório Funcionarios:");
-        cabecalho.setAlignmentX(Component.CENTER_ALIGNMENT);
-        panel.add(cabecalho);
-        cabecalho.setFont(new Font("Arial", Font.BOLD,16));
-        panel.add(Box.createVerticalStrut(20)); 
 
 
 
+            JLabel cabecalho = new JLabel("Relatório Funcionarios:");
+            cabecalho.setAlignmentX(Component.CENTER_ALIGNMENT);
+            cabecalho.setFont(new Font("Arial", Font.BOLD,16));
+             
+            int numFuncionarios = centralVendas.numFuncionarios();
 
-
-
-
-
-
-    
             JButton btnBack = new JButton("Voltar");
             btnBack.addActionListener(new ActionListener() {
                 @Override
@@ -642,8 +637,25 @@ public class SistemaLoja extends JFrame {
                 }
             });
     
+
+            panel.add(cabecalho);
+            panel.add(Box.createVerticalStrut(20));
+
+            for(int c = 0; c < numFuncionarios ; c++){
+                panel.add(new JLabel(centralVendas.getNomeFuncionarioPos(c)));
+                panel.add(new JLabel(centralVendas.getRelatorioValorVendidoFuncionarioPos(c)));
+                int numProdutosVendidos = centralVendas.getNumProdutosFuncionarioPos(c);
+                if(numProdutosVendidos >= 1){
+                    panel.add(new JLabel("Código     Tipo     Marca     Tamanho     Preço"));
+                    }
+                for(int a = 0; a < numProdutosVendidos; a++){
+                    
+                }
+                panel.add(Box.createVerticalStrut(10));
+            }
+
+
             panel.add(btnBack, BorderLayout.SOUTH);
-    
             exibirPainel(panel);
         }
     

@@ -23,6 +23,13 @@ public class RelacaoFuncionarios {
         return false;  //funcionario não encontrado
     }
 
+    public int numFuncionarios(){
+        return listaFuncionarios.size();
+    }
+
+    public String getNomeFuncionarioPos(int p){
+        return listaFuncionarios.get(p).getNome();
+    }
 
     public Funcionario buscarFuncionario(String nome){
         for (Funcionario f : listaFuncionarios) {
@@ -44,12 +51,14 @@ public class RelacaoFuncionarios {
 
     }
 
-    public void relatorioFuncionarios(){
-        System.out.println("Relatorio dos funcionarios:\n");
-        for (Funcionario f : listaFuncionarios) {
-            f.getRelatorio();
-            System.out.println("\n");
-        }
+    
+
+    public String getRelatorioValorVendidoFuncionarioPos(int p){
+        return listaFuncionarios.get(p).relatorioValorVendido();
+    }
+
+    public int getNumProdutosFuncionarioPos(int c){
+        return listaFuncionarios.get(c).getNumProdutosVendidos();
     }
 
     public boolean tem(String nome){

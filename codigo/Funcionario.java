@@ -30,14 +30,17 @@ public class Funcionario {
         return soma;
     }
 
-    public void getRelatorio(){
-        System.out.printf("Relatorio funcionario/a %s\n\n",nome);
-        System.out.printf("Total de vendas R$%.2f\n\n",getValorVendas());
-        System.out.println("Produtos vendidos: ");
-        System.out.println("Codigo     Tipo     Marca     Tamanho     Preco\n");
-        for (Sapato s : vendas) {
-            System.out.println(s);
-        }
+    public String relatorioValorVendido(){
+        String aux = String.format("Total de vendas R$%.2f\n\n",getValorVendas());
+        return aux;
+    }
+
+    public int getNumProdutosVendidos(){
+        return vendas.size();
+    }
+
+    public String getProdutoPos(int c){
+        return vendas.get(c).toString();
     }
 
     @Override
