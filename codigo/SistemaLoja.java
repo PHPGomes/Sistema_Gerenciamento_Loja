@@ -302,7 +302,7 @@ public class SistemaLoja extends JFrame {
             btnCode.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    exibirGerenciarEstoque();
+                    exibirBuscarSapatoCodigo();
                 }
             });
             btnType.addActionListener(new ActionListener() {
@@ -754,6 +754,116 @@ public class SistemaLoja extends JFrame {
         }
     
 
+
+        private void exibirBuscarSapatoCodigo(){
+            JPanel panel = new JPanel();
+            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+            JLabel titulo = new JLabel("Busca por Código");
+            titulo.setAlignmentX(Component.CENTER_ALIGNMENT);
+            panel.add(titulo);
+            titulo.setFont(new Font("Arial", Font.BOLD,16));
+            panel.add(Box.createVerticalStrut(20));
+
+            JLabel cabecalho = new JLabel("Informe o código do produto");
+            cabecalho.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+            JTextField codigoField = new JTextField(10);
+            
+            JButton btnBack = new JButton("Voltar");
+            btnBack.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    exibirGerenciarEstoque();
+                }
+            });
+            JButton btnBuscar = new JButton("Buscar");
+            btnBuscar.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+
+                    exibirSapatoBuscadoCodigo(Integer.parseInt(codigoField.getText()));
+
+                    
+                }
+            });
+
+            btnBack.setAlignmentX(Component.CENTER_ALIGNMENT);
+            btnBuscar.setAlignmentX(Component.CENTER_ALIGNMENT);
+            codigoField.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+            panel.add(cabecalho);
+            panel.add(Box.createVerticalStrut(10));
+            panel.add(codigoField);
+            panel.add(Box.createVerticalStrut(10));
+            panel.add(btnBuscar);
+            panel.add(Box.createVerticalStrut(10));
+            panel.add(btnBack);
+
+            
+
+            exibirPainel(panel);
+
+            
+            
+        }
+
+        private void exibirSapatoBuscadoCodigo(int codigo){
+            JPanel panel = new JPanel();
+            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+            JLabel titulo = new JLabel("Sapatos Encontrados:");
+            titulo.setAlignmentX(Component.CENTER_ALIGNMENT);
+            panel.add(titulo);
+            titulo.setFont(new Font("Arial", Font.BOLD,16));
+            panel.add(Box.createVerticalStrut(20));
+
+            if(!gerenciadorEstoque.buscarCodigo(codigo).equals("0")){
+                JLabel cabecalho = new JLabel("Código     Tipo     Marca     Tamanho     Preço");
+                cabecalho.setAlignmentX(Component.CENTER_ALIGNMENT);
+                panel.add(cabecalho);
+
+                JLabel sapato = new JLabel(gerenciadorEstoque.buscarCodigo(codigo));
+                sapato.setAlignmentX(Component.CENTER_ALIGNMENT);
+                panel.add(sapato);
+            }
+
+            else{
+                JLabel cabecalho = new JLabel("Sapato Não Encontrado!");
+                cabecalho.setAlignmentX(Component.CENTER_ALIGNMENT);
+                panel.add(cabecalho);
+            }
+
+            
+
+
+            
+            JButton btnBack = new JButton("Voltar");
+            btnBack.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    exibirGerenciarEstoque();
+                }
+            });
+            
+
+            btnBack.setAlignmentX(Component.CENTER_ALIGNMENT);
+            
+            panel.add(Box.createVerticalStrut(10));
+            
+            panel.add(btnBack);
+
+            
+
+            exibirPainel(panel);
+
+            
+            
+        }
+
+
+        
         private void exibirPainel(JPanel panel) {
             if (currentPanel != null) {
                 remove(currentPanel);

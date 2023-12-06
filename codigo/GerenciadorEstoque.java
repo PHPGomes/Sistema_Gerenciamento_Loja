@@ -64,7 +64,9 @@ public class GerenciadorEstoque {
         }
     }
 
-
+    public String buscarCodigo(int codigo){
+        return estoque.buscarCodigo(codigo);
+    }
 
     public void removerSapato(int codigo){
         estoque.removerSapato(codigo);

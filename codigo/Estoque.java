@@ -49,11 +49,8 @@ public class Estoque {
         System.out.println("[6] Todos");
         metBusca = Integer.parseInt(leitura.nextLine());
         
-        if(metBusca == 1){
-            buscarCodigo();
-        }
-
-        else if(metBusca == 2){
+        
+        if(metBusca == 2){
             buscarTipo();
         }
 
@@ -74,16 +71,14 @@ public class Estoque {
         }
     }
 
-    public void buscarCodigo(){
-        int codigo;
-        System.out.print("Digite o codigo: ");
-        codigo = Integer.parseInt(leitura.nextLine());
-        System.out.println("Codigo     Tipo     Marca     Tamanho     Preco");
+    public String buscarCodigo(int codigo){
+
         for (Sapato s : estoque) {
             if(s.getCodigo() == codigo){
-                System.out.println(s);
+                return s.toString();
             }
         }
+        return "0";
     }
 
     public void buscarTipo(){
