@@ -1,4 +1,5 @@
 package codigo;
+
 public abstract class Sapato {
 
     private int tamanho;
@@ -14,19 +15,19 @@ public abstract class Sapato {
         this.preco = preco;
     }
 
-    public int getTamanho(){
+    public int getTamanho() {
         return tamanho;
     }
-  
-    public int getCodigo(){
+
+    public int getCodigo() {
         return codigo;
     }
 
-    public String getMarca(){
+    public String getMarca() {
         return marca;
     }
-    
-    public String getTipo(){
+
+    public String getTipo() {
         return tipo;
     }
 
@@ -34,16 +35,14 @@ public abstract class Sapato {
         return preco;
     }
 
-    protected void setTipo(String tipo){
+    protected void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
-    
-
-    @Override 
-    public String toString(){
+    @Override
+    public String toString() {
         String aux;
-        aux = String.format("%5d%10s%10s%12d%7s%.2f",codigo, tipo,marca,tamanho,"R$",preco);
+        aux = String.format("%5d%10s%10s%12d%7s%.2f", codigo, tipo, marca, tamanho, "R$", preco);
         return aux;
     }
 }

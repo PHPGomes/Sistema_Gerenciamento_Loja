@@ -1,11 +1,12 @@
 package codigo;
+
 import java.util.LinkedList;
 
 public class Funcionario {
     private String nome;
     private LinkedList<Sapato> vendas;
 
-    public Funcionario(String nome){
+    public Funcionario(String nome) {
         this.nome = nome;
         vendas = new LinkedList<>();
     }
@@ -18,11 +19,11 @@ public class Funcionario {
         return calcularTotalVendas();
     }
 
-    public void adiconarVenda(Sapato s){
+    public void adiconarVenda(Sapato s) {
         vendas.add(s);
     }
 
-    private double calcularTotalVendas(){
+    private double calcularTotalVendas() {
         double soma = 0.00f;
         for (Sapato s : vendas) {
             soma += s.getPreco();
@@ -30,20 +31,18 @@ public class Funcionario {
         return soma;
     }
 
-    public String relatorioValorVendido(){
-        String aux = String.format("Total de vendas R$%.2f\n\n",getValorVendas());
+    public String relatorioValorVendido() {
+        String aux = String.format("Total de vendas R$%.2f\n\n", getValorVendas());
         return aux;
     }
 
-    public int getNumProdutosVendidos(){
+    public int getNumProdutosVendidos() {
         return vendas.size();
     }
 
-    public String getProdutoPos(int c){
+    public String getProdutoPos(int c) {
         return vendas.get(c).toString();
     }
-
-
 
     @Override
     public String toString() {
