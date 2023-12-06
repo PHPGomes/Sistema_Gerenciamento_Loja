@@ -1,4 +1,5 @@
 package codigo;
+
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -7,30 +8,30 @@ public class Estoque {
     private LinkedList<Sapato> estoque;
     Scanner leitura;
 
-    private Estoque(){
+    private Estoque() {
         estoque = new LinkedList<>();
         leitura = new Scanner(System.in);
     }
 
-    public static Estoque getIntance(){ //Padrão de projeto Singleton
-        if(estoqueUnico == null){
+    public static Estoque getIntance() { // Padrão de projeto Singleton
+        if (estoqueUnico == null) {
             estoqueUnico = new Estoque();
         }
         return estoqueUnico;
     }
 
-    public int getTamanhoEstoque(){
+    public int getTamanhoEstoque() {
         return estoque.size();
     }
 
-    public void adicionarSapato(Sapato sapato){
+    public void adicionarSapato(Sapato sapato) {
         estoque.add(sapato);
         System.out.println("Sapato adicionado! \n\n");
     }
 
-    public boolean removerSapato(int codigo){
+    public boolean removerSapato(int codigo) {
         for (Sapato s : estoque) {
-            if(s.getCodigo() == codigo){
+            if (s.getCodigo() == codigo) {
                 estoque.remove(s);
                 return true;
             }
@@ -38,7 +39,7 @@ public class Estoque {
         return false;
     }
 
-    public void buscarSapato(){
+    public void buscarSapato() {
         int metBusca;
         System.out.println("Escolha um metodo de busca:");
         System.out.println("[1] Codigo");
@@ -48,92 +49,89 @@ public class Estoque {
         System.out.println("[5] Faixa de Preco");
         System.out.println("[6] Todos");
         metBusca = Integer.parseInt(leitura.nextLine());
-        
-        if(metBusca == 1){
+
+        if (metBusca == 1) {
             buscarCodigo();
         }
 
-        else if(metBusca == 2){
+        else if (metBusca == 2) {
             buscarTipo();
         }
 
-        else if(metBusca == 3){
+        else if (metBusca == 3) {
             buscarMarca();
         }
 
-        else if(metBusca == 4){
+        else if (metBusca == 4) {
             buscarTamanho();
         }
 
-        else if(metBusca == 5){
+        else if (metBusca == 5) {
             buscarPreco();
         }
 
-        else if(metBusca == 6){
+        else if (metBusca == 6) {
             System.out.println(toString());
         }
     }
 
-    public void buscarCodigo(){
+    public void buscarCodigo() {
         int codigo;
         System.out.print("Digite o codigo: ");
         codigo = Integer.parseInt(leitura.nextLine());
         System.out.println("Codigo     Tipo     Marca     Tamanho     Preco");
         for (Sapato s : estoque) {
-            if(s.getCodigo() == codigo){
+            if (s.getCodigo() == codigo) {
                 System.out.println(s);
             }
         }
     }
 
-    public void buscarTipo(){
+    public void buscarTipo() {
         String tipo = "";
         int escolha;
         System.out.println("Escolha o tipo:");
         System.out.println("[1] Social");
         System.out.println("[2] Corrida");
         escolha = Integer.parseInt(leitura.nextLine());
-        if(escolha == 1){
+        if (escolha == 1) {
             tipo = "Social";
-        }
-        else if(escolha == 2){
+        } else if (escolha == 2) {
             tipo = "Corrida";
         }
         System.out.println("Codigo     Tipo     Marca     Tamanho     Preco");
         for (Sapato s : estoque) {
-            if(s.getTipo().equals(tipo)){
+            if (s.getTipo().equals(tipo)) {
                 System.out.println(s);
             }
         }
     }
-    
 
-    public void buscarMarca(){
+    public void buscarMarca() {
         String marca;
         System.out.print("Digite a marca:  ");
         marca = leitura.nextLine();
         System.out.println("Codigo     Tipo     Marca     Tamanho     Preco");
         for (Sapato s : estoque) {
-            if(s.getMarca().equals(marca)){
+            if (s.getMarca().equals(marca)) {
                 System.out.println(s);
             }
         }
     }
 
-    public void buscarTamanho(){
+    public void buscarTamanho() {
         int tamanho;
         System.out.print("Digite o tamanho: ");
         tamanho = Integer.parseInt(leitura.nextLine());
         System.out.println("Codigo     Tipo     Marca     Tamanho     Preco");
         for (Sapato s : estoque) {
-            if(s.getTamanho() == tamanho){
+            if (s.getTamanho() == tamanho) {
                 System.out.println(s);
             }
         }
     }
 
-
-    public void buscarPreco(){
+    public void buscarPreco() {
         double precoMinimo, precoMaximo;
         System.out.print("Digite o preco minimo: ");
         precoMinimo = Double.parseDouble(leitura.nextLine());
@@ -141,39 +139,37 @@ public class Estoque {
         precoMaximo = Double.parseDouble(leitura.nextLine());
         System.out.println("Codigo     Tipo     Marca     Tamanho     Preco");
         for (Sapato s : estoque) {
-            if(s.getPreco() >= precoMinimo && s.getPreco() <= precoMaximo){
+            if (s.getPreco() >= precoMinimo && s.getPreco() <= precoMaximo) {
                 System.out.println(s);
             }
         }
     }
 
-
-    public void gerarRelatorio(){
+    public void gerarRelatorio() {
         System.out.println("Relatorio Do Estoque:");
-        if(estoque.size() == 0){
+        if (estoque.size() == 0) {
             System.out.println("O Estoque esta vazio");
         }
-        
-        else if(estoque.size() == 1){
+
+        else if (estoque.size() == 1) {
             System.out.println("Atualmente o estoque tem um total de 1 item\n");
-            System.out.println(toString()); 
+            System.out.println(toString());
         }
 
-        else{
-            System.out.printf("Atualmente o estoque tem um total de %d itens\n\n",estoque.size());
-            System.out.println(toString()); 
+        else {
+            System.out.printf("Atualmente o estoque tem um total de %d itens\n\n", estoque.size());
+            System.out.println(toString());
         }
     }
 
-    public Sapato getSapato(int codigo){ //retorno um clone de sapato para não quebra o encapsulamento
+    public Sapato getSapato(int codigo) { // retorno um clone de sapato para não quebra o encapsulamento
         Sapato s2;
         for (Sapato s : estoque) {
             if (s.getCodigo() == codigo) {
 
-                if(s.getTipo().equals("Corrida")){
+                if (s.getTipo().equals("Corrida")) {
                     s2 = new SapatoCorrida(s.getTamanho(), s.getCodigo(), s.getMarca(), s.getPreco());
-                }
-                else{
+                } else {
                     s2 = new SapatoSocial(s.getTamanho(), s.getCodigo(), s.getMarca(), s.getPreco());
                 }
                 return s2;
@@ -182,20 +178,19 @@ public class Estoque {
         return null;
     }
 
-    public String getSapatoPosicao(int pos){
+    public String getSapatoPosicao(int pos) {
         Sapato s = estoque.get(pos);
         return s.toString();
     }
 
-
     @Override
-    public String toString(){
+    public String toString() {
         String aux;
         aux = "Codigo     Tipo     Marca     Tamanho     Preco\n";
         for (Sapato s : estoque) {
             aux = aux + s + "\n";
         }
-       return aux;
+        return aux;
     }
-    
+
 }

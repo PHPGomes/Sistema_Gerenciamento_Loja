@@ -1,7 +1,5 @@
 package codigo;
 
-
-
 //Bibliotecas gráficas para java
 import javax.swing.*;
 import java.awt.*;
@@ -12,10 +10,10 @@ import java.awt.event.ActionListener;
 public class SistemaLoja extends JFrame {
     GerenciadorEstoque gerenciadorEstoque = GerenciadorEstoque.getInstance();
     CentralVendas centralVendas = new CentralVendas();
-    //Cria instância da classe e configura o tamanho da janela e a torna visvel
+    // Cria instância da classe e configura o tamanho da janela e a torna visvel
 
     public static void main(String[] args) {
-         
+
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -28,10 +26,11 @@ public class SistemaLoja extends JFrame {
         });
     }
 
-    //Armazena o painel atual que está sendo exibido
+    // Armazena o painel atual que está sendo exibido
     private JPanel currentPanel;
 
-    //Contrutor define o título da janela e efine um layout de borda e chama a página inicial.
+    // Contrutor define o título da janela e efine um layout de borda e chama a
+    // página inicial.
     public SistemaLoja() {
         setTitle("Sistema de Loja");
         setLayout(new FlowLayout());
@@ -40,727 +39,727 @@ public class SistemaLoja extends JFrame {
         exibirPaginaInicial();
     }
 
+    private void exibirPaginaInicial() {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-        private void exibirPaginaInicial() {
-            JPanel panel = new JPanel();
-            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        JLabel welcomeLabel = new JLabel("Bem Vindo");
+        welcomeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(welcomeLabel);
+        welcomeLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        panel.add(Box.createVerticalStrut(20));
 
-            JLabel welcomeLabel = new JLabel("Bem Vindo");
-            welcomeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-            panel.add(welcomeLabel);
-            welcomeLabel.setFont(new Font("Arial", Font.BOLD,16));
-            panel.add(Box.createVerticalStrut(20)); 
+        JLabel chooseOptionLabel = new JLabel("Escolha uma opção:");
+        chooseOptionLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(chooseOptionLabel);
+        welcomeLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        panel.add(Box.createVerticalStrut(20));
 
-            JLabel chooseOptionLabel = new JLabel("Escolha uma opção:");
-            chooseOptionLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-            panel.add(chooseOptionLabel);
-            welcomeLabel.setFont(new Font("Arial", Font.BOLD,16));
-            panel.add(Box.createVerticalStrut(20)); 
+        JButton btnManageStock = new JButton("Gerenciar Estoque");
+        JButton btnSell = new JButton("   Realizar Venda    ");
+        JButton btnExit = new JButton("Sair");
+        btnManageStock.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btnSell.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btnExit.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-            JButton btnManageStock = new JButton("Gerenciar Estoque");
-            JButton btnSell = new JButton("   Realizar Venda    ");
-            JButton btnExit = new JButton("Sair");
-            btnManageStock.setAlignmentX(Component.CENTER_ALIGNMENT);
-            btnSell.setAlignmentX(Component.CENTER_ALIGNMENT);
-            btnExit.setAlignmentX(Component.CENTER_ALIGNMENT);
-            
-
-            //gerenciar estoque
-            btnManageStock.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    exibirGerenciarEstoque();
-                }
-            });
-
-            //vender
-
-            
-            btnSell.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    exibirRealizarVenda();
-                }
-            });
-
-            //sair
-            btnExit.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    exibirPaginaInicial();
-                }
-            });
-
-            panel.add(btnManageStock);
-            panel.add(Box.createVerticalStrut(10));
-            panel.add(btnSell);
-            panel.add(Box.createVerticalStrut(10));
-            panel.add(btnExit);
-            panel.add(Box.createVerticalStrut(10));
-
-            exibirPainel(panel);
-        }
-
-
-        private void exibirGerenciarEstoque() {
-
-            JPanel panel = new JPanel();
-            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-    
-            JLabel chooseOptionLabel = new JLabel("Escolha uma opção:");
-            chooseOptionLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-            panel.add(chooseOptionLabel);
-            chooseOptionLabel.setFont(new Font("Arial", Font.BOLD,16));
-            panel.add(Box.createVerticalStrut(20)); 
-    
-            JButton btnAddShoe = new JButton("         Adicionar Sapato          ");
-            JButton btnRemoveShoe = new JButton("          Remover Sapato          ");
-            JButton btnSearchShoe = new JButton("             Buscar Sapato           ");
-            JButton btnStockReport = new JButton("Gerar Relatório de Estoque ");
-            JButton btnBack = new JButton("Sair");
-            btnAddShoe.setAlignmentX(Component.CENTER_ALIGNMENT);
-            btnRemoveShoe.setAlignmentX(Component.CENTER_ALIGNMENT);
-            btnSearchShoe.setAlignmentX(Component.CENTER_ALIGNMENT);
-            btnStockReport.setAlignmentX(Component.CENTER_ALIGNMENT);
-            btnBack.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-            btnAddShoe.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    exibirAdicionarSapato();
-                }
-            });
-            btnRemoveShoe.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    exibirRemoverSapato();
-                }
-            });
-            btnSearchShoe.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    exibirBuscarSapato();
-                }
-            });
-            btnStockReport.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    exibirRelatorioEstoque();
-                }
-            });
-            btnBack.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    exibirPaginaInicial();
-                }
-            });
-    
-            panel.add(btnAddShoe);
-            panel.add(Box.createVerticalStrut(10));
-            panel.add(btnRemoveShoe);
-            panel.add(Box.createVerticalStrut(10));
-            panel.add(btnSearchShoe);
-            panel.add(Box.createVerticalStrut(10));
-            panel.add(btnStockReport);
-            panel.add(Box.createVerticalStrut(10));
-            panel.add(btnBack);
-    
-            exibirPainel(panel);
-        }
-    
-        
-        private void exibirAdicionarSapato() {
-            JPanel panel = new JPanel();
-            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-
-            JLabel cabecalho = new JLabel("Adicionar Sapato");
-            panel.add(cabecalho);
-            cabecalho.setFont(new Font("Arial", Font.BOLD,16));
-            panel.add(Box.createVerticalStrut(20));
-    
-            JTextField marcaField = new JTextField(10);
-            JTextField tamanhoField = new JTextField(10);
-            JTextField precoField = new JTextField(10);
-            JTextField codigoField = new JTextField(10);
-    
-            JLabel marcaLabel = new JLabel("Marca:");
-            JLabel tamanhoLabel = new JLabel("Tamanho:");
-            JLabel precoLabel = new JLabel("Preço:");
-            JLabel codigoLabel = new JLabel("Código:");
-    
-            JButton btnSocial = new JButton("Sapato Social");
-            JButton btnRunningShoe = new JButton("Tênis de Corrida");
-            JButton btnBack = new JButton("Voltar");
-    
-
-            //adiciona sapato social
-            btnSocial.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    //int tamanho,int codigo,double preco,String tipo,String marca
-
-                    String tipo = "1";
-                    gerenciadorEstoque.adicionarSapato(Integer.parseInt(tamanhoField.getText()) ,Integer.parseInt(codigoField.getText()),Double.parseDouble(precoField.getText()),tipo,marcaField.getText());
-
-                    //volta ao gerenciador
-                    
-                    exibirGerenciarEstoque();
-                }
-            });
-
-            //adiciona sapato corrida
-            btnRunningShoe.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-
-                    //adiciona ao estoque
-                    String tipo = "2";
-                    gerenciadorEstoque.adicionarSapato(Integer.parseInt(tamanhoField.getText()) ,Integer.parseInt(codigoField.getText()),Double. parseDouble(precoField.getText()),tipo,marcaField.getText());
-
-                    //volta ao gerenciador
-                    exibirGerenciarEstoque();
-                }
-            });
-            btnBack.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    exibirGerenciarEstoque();
-                }
-            });
-    
-            panel.add(marcaLabel);
-            panel.add(marcaField);
-            panel.add(tamanhoLabel);
-            panel.add(tamanhoField);
-            panel.add(precoLabel);
-            panel.add(precoField);
-            panel.add(codigoLabel);
-            panel.add(codigoField);
-            panel.add(btnSocial);
-            panel.add(btnRunningShoe);
-            panel.add(btnBack);
-    
-            exibirPainel(panel);
-        }
-
-
-        private void exibirRemoverSapato() {
-            JPanel panel = new JPanel();
-            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-
-            JLabel cabecalho = new JLabel("Remover Sapato");
-            panel.add(cabecalho);
-            cabecalho.setFont(new Font("Arial", Font.BOLD,16));
-            panel.add(Box.createVerticalStrut(20));
-    
-            JTextField codigoField = new JTextField(10);
-            JLabel codigoLabel = new JLabel("Código do Produto:");
-    
-            JButton btnRemove = new JButton("Remover");
-            JButton btnBack = new JButton("Voltar");
-    
-            btnRemove.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-
-                    //remove sapato do estoque
-                    gerenciadorEstoque.removerSapato(Integer.parseInt(codigoField.getText()));
-
-                    exibirGerenciarEstoque();
-                }
-            });
-            btnBack.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    exibirGerenciarEstoque();
-                }
-            });
-    
-            panel.add(codigoLabel);
-            panel.add(codigoField);
-            panel.add(btnRemove);
-            panel.add(btnBack);
-    
-            exibirPainel(panel);
-        }
-    
-
-        private void exibirBuscarSapato() {
-            JPanel panel = new JPanel();
-            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-    
-            JLabel chooseMethodLabel = new JLabel("Escolha um método de busca:");
-            chooseMethodLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-    
-            JButton btnCode = new JButton("Código");
-            JButton btnType = new JButton("Tipo");
-            JButton btnBrand = new JButton("Marca");
-            JButton btnPriceRange = new JButton("Faixa de preço");
-            JButton btnAll = new JButton("Todos");
-            JButton btnBack = new JButton("Voltar");
-    
-            btnCode.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    exibirGerenciarEstoque();
-                }
-            });
-            btnType.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    exibirGerenciarEstoque();
-                }
-            });
-            btnBrand.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    exibirGerenciarEstoque();
-                }
-            });
-            btnPriceRange.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    exibirGerenciarEstoque();
-                }
-            });
-            btnAll.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    exibirGerenciarEstoque();
-                }
-            });
-            btnBack.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    exibirGerenciarEstoque();
-                }
-            });
-    
-            panel.add(chooseMethodLabel);
-            panel.add(btnCode);
-            panel.add(btnType);
-            panel.add(btnBrand);
-            panel.add(btnPriceRange);
-            panel.add(btnAll);
-            panel.add(btnBack);
-    
-            exibirPainel(panel);
-        }
-    
-
-        private void exibirRelatorioEstoque() {
-            JPanel panel = new JPanel();
-            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-
-            
-            JLabel titulo = new JLabel("Relatório Estoque:");
-            titulo.setAlignmentX(Component.CENTER_ALIGNMENT);
-            panel.add(titulo);
-            titulo.setFont(new Font("Arial", Font.BOLD,16));
-            panel.add(Box.createVerticalStrut(20)); 
-
-
-
-
-
-            JLabel cabecalho = new JLabel("Código     Tipo     Marca     Tamanho     Preço");
-            cabecalho.setAlignmentX(Component.CENTER_ALIGNMENT);
-            int tamEstoque = gerenciadorEstoque.getTamanhoEstoque();
-            
-
-            JButton btnBack = new JButton("Voltar");
-            btnBack.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    exibirGerenciarEstoque();
-                }
-            });
-            
-            btnBack.setAlignmentX(Component.CENTER_ALIGNMENT);
-            if(gerenciadorEstoque.getTamanhoEstoque() >= 1){
-                panel.add(cabecalho);
+        // gerenciar estoque
+        btnManageStock.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirGerenciarEstoque();
             }
-            else{
-                JLabel estoqueVazio = new JLabel("O Estoque está Vazio!");
-                estoqueVazio.setAlignmentX(Component.CENTER_ALIGNMENT);
-                panel.add(estoqueVazio);
+        });
+
+        // vender
+
+        btnSell.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirRealizarVenda();
             }
-            
+        });
 
-            for(int i=0 ; i< tamEstoque; i++){
-                
-                JLabel aux = new JLabel(gerenciadorEstoque.getSapatoPosicao(i));
-                aux.setAlignmentX(Component.CENTER_ALIGNMENT);
-                panel.add(aux);
+        // sair
+        btnExit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirPaginaInicial();
             }
+        });
 
-            panel.add(Box.createVerticalStrut(20));
-            panel.add(btnBack, BorderLayout.SOUTH);
-            
-            exibirPainel(panel);
-        }
-    
+        panel.add(btnManageStock);
+        panel.add(Box.createVerticalStrut(10));
+        panel.add(btnSell);
+        panel.add(Box.createVerticalStrut(10));
+        panel.add(btnExit);
+        panel.add(Box.createVerticalStrut(10));
 
-        private void exibirRealizarVenda() {
-            JPanel panel = new JPanel();
-            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-
-            JLabel welcomeVendaLabel = new JLabel("Escolha uma opção:");
-            welcomeVendaLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-            panel.add(welcomeVendaLabel);
-            welcomeVendaLabel.setFont(new Font("Arial", Font.BOLD,16));
-            panel.add(Box.createVerticalStrut(20));
-            
-
-            JButton btnShowStock = new JButton("              Exibir Estoque           ");
-                                                    
-            JButton btnSell = new JButton("            Realizar Venda           ");
-            JButton btnHireEmployee = new JButton("      Contratar Funcionário     ");
-            JButton btnFireEmployee = new JButton("        Demitir Funcionário        ");
-            JButton btnShowEmployees = new JButton("Exibir Lista de Funcionários");
-            JButton btnEmployeeReport = new JButton("    Relatório de Funcionário   ");
-            JButton btnExit = new JButton("Sair");
-    
-            btnShowStock.setAlignmentX(Component.CENTER_ALIGNMENT);
-            btnSell.setAlignmentX(Component.CENTER_ALIGNMENT);
-            btnHireEmployee.setAlignmentX(Component.CENTER_ALIGNMENT);
-            btnFireEmployee.setAlignmentX(Component.CENTER_ALIGNMENT);
-            btnShowEmployees.setAlignmentX(Component.CENTER_ALIGNMENT);
-            btnEmployeeReport.setAlignmentX(Component.CENTER_ALIGNMENT);
-            btnExit.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-            btnShowStock.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    exibirExibirEstoque();
-                }
-            });
-            btnSell.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    exibirRealizarVenda();
-                }
-            });
-            btnHireEmployee.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    exibirContratarFuncionario();
-                }
-            });
-            btnFireEmployee.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    exibirDemitirFuncionario();
-                }
-            });
-            btnShowEmployees.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    exibirListaFuncionarios();
-                }
-            });
-            btnEmployeeReport.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    exibirRelatorioFuncionario();
-                }
-            });
-            btnExit.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    exibirPaginaInicial();
-                }
-            });
-    
-            panel.add(btnShowStock);
-            panel.add(Box.createVerticalStrut(10));
-            panel.add(btnSell);
-            panel.add(Box.createVerticalStrut(10));
-            panel.add(btnHireEmployee);
-            panel.add(Box.createVerticalStrut(10));
-            panel.add(btnFireEmployee);
-            panel.add(Box.createVerticalStrut(10));
-            panel.add(btnShowEmployees);
-            panel.add(Box.createVerticalStrut(10));
-            panel.add(btnEmployeeReport);
-            panel.add(Box.createVerticalStrut(10));
-            panel.add(btnExit);
-    
-            exibirPainel(panel);
-        }
-    
-
-        private void exibirExibirEstoque() {
-            JPanel panel = new JPanel();
-            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));;
-            
-
-            
-            
-
-            JLabel titulo = new JLabel("Estoque:");
-            titulo.setAlignmentX(Component.CENTER_ALIGNMENT);
-            panel.add(titulo);
-            titulo.setFont(new Font("Arial", Font.BOLD,16));
-            panel.add(Box.createVerticalStrut(20)); 
-
-
-
-
-
-            JLabel cabecalho = new JLabel("Código     Tipo     Marca     Tamanho     Preço");
-            cabecalho.setAlignmentX(Component.CENTER_ALIGNMENT);
-            int tamEstoque = gerenciadorEstoque.getTamanhoEstoque();
-
-
-            JButton btnBack = new JButton("Voltar");
-            btnBack.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    exibirRealizarVenda();
-                }
-            });
-    
-            btnBack.setAlignmentX(Component.CENTER_ALIGNMENT);
-            if(gerenciadorEstoque.getTamanhoEstoque() >= 1){
-                panel.add(cabecalho);
-            }
-            else{
-                JLabel estoqueVazio = new JLabel("O Estoque está Vazio!");
-                estoqueVazio.setAlignmentX(Component.CENTER_ALIGNMENT);
-                panel.add(estoqueVazio);
-            }
-            
-
-
-
-            for(int i=0 ; i< tamEstoque; i++){
-                
-                JLabel aux = new JLabel(gerenciadorEstoque.getSapatoPosicao(i));
-                aux.setAlignmentX(Component.CENTER_ALIGNMENT);
-                panel.add(aux);
-            }
-
-            panel.add(Box.createVerticalStrut(20));
-            panel.add(btnBack, BorderLayout.SOUTH);
-
-    
-            exibirPainel(panel);
-        }
-    
-   
-        private void exibirContratarFuncionario() {
-            JPanel panel = new JPanel();
-            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-
-            JLabel cabecalho = new JLabel("Contratar Funcionário");
-            panel.add(cabecalho);
-            cabecalho.setFont(new Font("Arial", Font.BOLD,16));
-            panel.add(Box.createVerticalStrut(20));
-
-    
-            JTextField nomeField = new JTextField(10);
-            JLabel nomeLabel = new JLabel("Nome do Funcionário:");
-    
-            JButton btnOK = new JButton("OK");
-            JButton btnBack = new JButton("Voltar");
-    
-            btnOK.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-
-                    //contrata funcionario
-                    centralVendas.contratarFuncionario(nomeField.getText());
-
-                    exibirRealizarVenda();
-                }
-            });
-            btnBack.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    exibirRealizarVenda();
-                }
-            });
-    
-            panel.add(nomeLabel);
-            panel.add(nomeField);
-            panel.add(btnOK);
-            panel.add(btnBack);
-    
-            exibirPainel(panel);
-        }
-    
-
-        private void exibirDemitirFuncionario() {
-            JPanel panel = new JPanel();
-            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-
-            JLabel cabecalho = new JLabel("Demitir Funcionário");
-            panel.add(cabecalho);
-            cabecalho.setFont(new Font("Arial", Font.BOLD,16));
-            panel.add(Box.createVerticalStrut(20));
-
-    
-            JTextField nomeField = new JTextField(10);
-            JLabel nomeLabel = new JLabel("Nome do Funcionário:");
-    
-            JButton btnOK = new JButton("OK");
-            JButton btnBack = new JButton("Voltar");
-    
-            btnOK.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-
-                    //demitir funcionario
-                    centralVendas.demitirFuncionario(nomeField.getText());
-
-                    exibirRealizarVenda();
-                }
-            });
-            btnBack.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    exibirRealizarVenda();
-                }
-            });
-    
-            panel.add(nomeLabel);
-            panel.add(nomeField);
-            panel.add(btnOK);
-            panel.add(btnBack);
-    
-            exibirPainel(panel);
-        }
-    
-
-        private void exibirListaFuncionarios() {
-            JPanel panel = new JPanel();
-            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-
-            JLabel cabecalho = new JLabel("Lista Funcionarios:");
-            cabecalho.setAlignmentX(Component.CENTER_ALIGNMENT);
-            cabecalho.setFont(new Font("Arial", Font.BOLD,16));
-            panel.add(cabecalho);
-            panel.add(Box.createVerticalStrut(20));
-             
-            int numFuncionarios = centralVendas.numFuncionarios();
-
-            if(numFuncionarios < 1){
-                JLabel nenhumFuncionario = new JLabel("Você não tem Funcionarios!");
-                nenhumFuncionario.setAlignmentX(Component.CENTER_ALIGNMENT);
-                panel.add(nenhumFuncionario);
-                panel.add(Box.createVerticalStrut(10));
-            }
-    
-            JButton btnBack = new JButton("Voltar");
-            btnBack.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    exibirRealizarVenda();
-                }
-            });
-            btnBack.setAlignmentX(Component.CENTER_ALIGNMENT);
-            
-
-            for(int c = 0; c < numFuncionarios ; c++){
-
-                JLabel funcionario = new JLabel(centralVendas.getNomeFuncionarioPos(c));
-                funcionario.setAlignmentX(Component.CENTER_ALIGNMENT);
-                panel.add(funcionario);
-                panel.add(Box.createVerticalStrut(10));
-            }
-
-
-            panel.add(btnBack, BorderLayout.SOUTH);
-            exibirPainel(panel);
-        }
-    
-
-        private void exibirRelatorioFuncionario() {
-            JPanel panel = new JPanel();
-            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-
-
-
-            JLabel cabecalho = new JLabel("Relatório Funcionarios:");
-            cabecalho.setAlignmentX(Component.CENTER_ALIGNMENT);
-            cabecalho.setFont(new Font("Arial", Font.BOLD,16));
-            panel.add(cabecalho);
-            panel.add(Box.createVerticalStrut(20));
-
-
-
-             
-            int numFuncionarios = centralVendas.numFuncionarios();
-            if(numFuncionarios < 1){
-                JLabel nenhumFuncionario = new JLabel("Você não tem Funcionarios!");
-                nenhumFuncionario.setAlignmentX(Component.CENTER_ALIGNMENT);
-                panel.add(nenhumFuncionario);
-                panel.add(Box.createVerticalStrut(10));
-            }
-
-
-            JButton btnBack = new JButton("Voltar");
-            btnBack.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    exibirRealizarVenda();
-                }
-            });
-            btnBack.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-
-            for(int c = 0; c < numFuncionarios ; c++){
-
-
-
-                JLabel nome = new JLabel(centralVendas.getNomeFuncionarioPos(c));
-                nome.setAlignmentX(Component.CENTER_ALIGNMENT);
-                panel.add(nome);
-                JLabel valorVendido = new JLabel(centralVendas.getRelatorioValorVendidoFuncionarioPos(c));
-                valorVendido.setAlignmentX(Component.CENTER_ALIGNMENT);
-                panel.add(valorVendido);
-
-
-
-                int numProdutosVendidos = centralVendas.getNumProdutosFuncionarioPos(c);
-                if(numProdutosVendidos >= 1){
-                    JLabel tituloProdutosVendidos = new JLabel("Lista de Produtos Vendidos:");
-                    tituloProdutosVendidos.setAlignmentX(Component.CENTER_ALIGNMENT);
-                    panel.add(tituloProdutosVendidos);
-                    JLabel cabecalhoProdutosVendidos = new JLabel("Código     Tipo     Marca     Tamanho     Preço");
-                    cabecalhoProdutosVendidos.setAlignmentX(Component.CENTER_ALIGNMENT);
-                    panel.add(cabecalhoProdutosVendidos);
-
-                    }
-                else{
-                    JLabel nenhumProdutoVendido = new JLabel("Nenhum Produto Vendido!");
-                    nenhumProdutoVendido.setAlignmentX(Component.CENTER_ALIGNMENT);
-                    panel.add(nenhumProdutoVendido);
-                }
-
-
-                for(int a = 0; a < numProdutosVendidos; a++){
-                    JLabel produtoVendido = new JLabel(centralVendas.getProdutoPosFuncionario(c, a));
-                    produtoVendido.setAlignmentX(Component.BOTTOM_ALIGNMENT);
-                    panel.add(produtoVendido);
-                }
-                panel.add(Box.createVerticalStrut(10));
-            }
-
-
-            panel.add(btnBack, BorderLayout.SOUTH);
-            exibirPainel(panel);
-        }
-    
-
-        private void exibirPainel(JPanel panel) {
-            if (currentPanel != null) {
-                remove(currentPanel);
-            }
-            currentPanel = panel;
-            add(panel, BorderLayout.CENTER);
-            revalidate();
-            repaint();
-        }
+        exibirPainel(panel);
     }
+
+    private void exibirGerenciarEstoque() {
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        JLabel chooseOptionLabel = new JLabel("Escolha uma opção:");
+        chooseOptionLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(chooseOptionLabel);
+        chooseOptionLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        panel.add(Box.createVerticalStrut(20));
+
+        JButton btnAddShoe = new JButton("         Adicionar Sapato          ");
+        JButton btnRemoveShoe = new JButton("          Remover Sapato          ");
+        JButton btnSearchShoe = new JButton("             Buscar Sapato           ");
+        JButton btnStockReport = new JButton("Gerar Relatório de Estoque ");
+        JButton btnBack = new JButton("Sair");
+        btnAddShoe.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btnRemoveShoe.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btnSearchShoe.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btnStockReport.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btnBack.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        btnAddShoe.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirAdicionarSapato();
+            }
+        });
+        btnRemoveShoe.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirRemoverSapato();
+            }
+        });
+        btnSearchShoe.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirBuscarSapato();
+            }
+        });
+        btnStockReport.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirRelatorioEstoque();
+            }
+        });
+        btnBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirPaginaInicial();
+            }
+        });
+
+        panel.add(btnAddShoe);
+        panel.add(Box.createVerticalStrut(10));
+        panel.add(btnRemoveShoe);
+        panel.add(Box.createVerticalStrut(10));
+        panel.add(btnSearchShoe);
+        panel.add(Box.createVerticalStrut(10));
+        panel.add(btnStockReport);
+        panel.add(Box.createVerticalStrut(10));
+        panel.add(btnBack);
+
+        exibirPainel(panel);
+    }
+
+    private void exibirAdicionarSapato() {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        JLabel cabecalho = new JLabel("Adicionar Sapato");
+        panel.add(cabecalho);
+        cabecalho.setFont(new Font("Arial", Font.BOLD, 16));
+        panel.add(Box.createVerticalStrut(20));
+
+        JTextField marcaField = new JTextField(10);
+        JTextField tamanhoField = new JTextField(10);
+        JTextField precoField = new JTextField(10);
+        JTextField codigoField = new JTextField(10);
+
+        JLabel marcaLabel = new JLabel("Marca:");
+        JLabel tamanhoLabel = new JLabel("Tamanho:");
+        JLabel precoLabel = new JLabel("Preço:");
+        JLabel codigoLabel = new JLabel("Código:");
+
+        JButton btnSocial = new JButton("Sapato Social");
+        JButton btnRunningShoe = new JButton("Tênis de Corrida");
+        JButton btnBack = new JButton("Voltar");
+
+        // adiciona sapato social
+        btnSocial.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // int tamanho,int codigo,double preco,String tipo,String marca
+
+                String tipo = "1";
+                gerenciadorEstoque.adicionarSapato(Integer.parseInt(tamanhoField.getText()),
+                        Integer.parseInt(codigoField.getText()), Double.parseDouble(precoField.getText()), tipo,
+                        marcaField.getText());
+
+                // volta ao gerenciador
+
+                exibirGerenciarEstoque();
+            }
+        });
+
+        // adiciona sapato corrida
+        btnRunningShoe.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                // adiciona ao estoque
+                String tipo = "2";
+                gerenciadorEstoque.adicionarSapato(Integer.parseInt(tamanhoField.getText()),
+                        Integer.parseInt(codigoField.getText()), Double.parseDouble(precoField.getText()), tipo,
+                        marcaField.getText());
+
+                // volta ao gerenciador
+                exibirGerenciarEstoque();
+            }
+        });
+        btnBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirGerenciarEstoque();
+            }
+        });
+
+        panel.add(marcaLabel);
+        panel.add(marcaField);
+        panel.add(tamanhoLabel);
+        panel.add(tamanhoField);
+        panel.add(precoLabel);
+        panel.add(precoField);
+        panel.add(codigoLabel);
+        panel.add(codigoField);
+        panel.add(btnSocial);
+        panel.add(btnRunningShoe);
+        panel.add(btnBack);
+
+        exibirPainel(panel);
+    }
+
+    private void exibirRemoverSapato() {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        JLabel cabecalho = new JLabel("Remover Sapato");
+        panel.add(cabecalho);
+        cabecalho.setFont(new Font("Arial", Font.BOLD, 16));
+        panel.add(Box.createVerticalStrut(20));
+
+        JTextField codigoField = new JTextField(10);
+        JLabel codigoLabel = new JLabel("Código do Produto:");
+
+        JButton btnRemove = new JButton("Remover");
+        JButton btnBack = new JButton("Voltar");
+
+        btnRemove.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                // remove sapato do estoque
+                gerenciadorEstoque.removerSapato(Integer.parseInt(codigoField.getText()));
+
+                exibirGerenciarEstoque();
+            }
+        });
+        btnBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirGerenciarEstoque();
+            }
+        });
+
+        panel.add(codigoLabel);
+        panel.add(codigoField);
+        panel.add(btnRemove);
+        panel.add(btnBack);
+
+        exibirPainel(panel);
+    }
+
+    private void exibirBuscarSapato() {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        JLabel chooseMethodLabel = new JLabel("Escolha um método de busca:");
+        chooseMethodLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JButton btnCode = new JButton("Código");
+        JButton btnType = new JButton("Tipo");
+        JButton btnBrand = new JButton("Marca");
+        JButton btnPriceRange = new JButton("Faixa de preço");
+        JButton btnAll = new JButton("Todos");
+        JButton btnBack = new JButton("Voltar");
+
+        btnCode.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirGerenciarEstoque();
+            }
+        });
+        btnType.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirGerenciarEstoque();
+            }
+        });
+        btnBrand.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirGerenciarEstoque();
+            }
+        });
+        btnPriceRange.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirGerenciarEstoque();
+            }
+        });
+        btnAll.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirGerenciarEstoque();
+            }
+        });
+        btnBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirGerenciarEstoque();
+            }
+        });
+
+        panel.add(chooseMethodLabel);
+        panel.add(btnCode);
+        panel.add(btnType);
+        panel.add(btnBrand);
+        panel.add(btnPriceRange);
+        panel.add(btnAll);
+        panel.add(btnBack);
+
+        exibirPainel(panel);
+    }
+
+    private void exibirRelatorioEstoque() {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        JLabel titulo = new JLabel("Relatório Estoque:");
+        titulo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(titulo);
+        titulo.setFont(new Font("Arial", Font.BOLD, 16));
+        panel.add(Box.createVerticalStrut(20));
+
+        JLabel cabecalho = new JLabel("Código     Tipo     Marca     Tamanho     Preço");
+        cabecalho.setAlignmentX(Component.CENTER_ALIGNMENT);
+        int tamEstoque = gerenciadorEstoque.getTamanhoEstoque();
+
+        JButton btnBack = new JButton("Voltar");
+        btnBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirGerenciarEstoque();
+            }
+        });
+
+        btnBack.setAlignmentX(Component.CENTER_ALIGNMENT);
+        if (gerenciadorEstoque.getTamanhoEstoque() >= 1) {
+            panel.add(cabecalho);
+        } else {
+            JLabel estoqueVazio = new JLabel("O Estoque está Vazio!");
+            estoqueVazio.setAlignmentX(Component.CENTER_ALIGNMENT);
+            panel.add(estoqueVazio);
+        }
+
+        for (int i = 0; i < tamEstoque; i++) {
+
+            JLabel aux = new JLabel(gerenciadorEstoque.getSapatoPosicao(i));
+            aux.setAlignmentX(Component.CENTER_ALIGNMENT);
+            panel.add(aux);
+        }
+
+        panel.add(Box.createVerticalStrut(20));
+        panel.add(btnBack, BorderLayout.SOUTH);
+
+        exibirPainel(panel);
+    }
+
+    private void exibirRealizarVenda() {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        JLabel welcomeVendaLabel = new JLabel("Escolha uma opção:");
+        welcomeVendaLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(welcomeVendaLabel);
+        welcomeVendaLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        panel.add(Box.createVerticalStrut(20));
+
+        JButton btnShowStock = new JButton("              Exibir Estoque           ");
+
+        JButton btnSell = new JButton("            Realizar Venda           ");
+        JButton btnHireEmployee = new JButton("      Contratar Funcionário     ");
+        JButton btnFireEmployee = new JButton("        Demitir Funcionário        ");
+        JButton btnShowEmployees = new JButton("Exibir Lista de Funcionários");
+        JButton btnEmployeeReport = new JButton("    Relatório de Funcionário   ");
+        JButton btnExit = new JButton("Sair");
+
+        btnShowStock.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btnSell.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btnHireEmployee.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btnFireEmployee.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btnShowEmployees.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btnEmployeeReport.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btnExit.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        btnShowStock.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirExibirEstoque();
+            }
+        });
+        btnSell.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirRealizarVendaSapato();
+            }
+        });
+        btnHireEmployee.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirContratarFuncionario();
+            }
+        });
+        btnFireEmployee.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirDemitirFuncionario();
+            }
+        });
+        btnShowEmployees.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirListaFuncionarios();
+            }
+        });
+        btnEmployeeReport.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirRelatorioFuncionario();
+            }
+        });
+        btnExit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirPaginaInicial();
+            }
+        });
+
+        panel.add(btnShowStock);
+        panel.add(Box.createVerticalStrut(10));
+        panel.add(btnSell);
+        panel.add(Box.createVerticalStrut(10));
+        panel.add(btnHireEmployee);
+        panel.add(Box.createVerticalStrut(10));
+        panel.add(btnFireEmployee);
+        panel.add(Box.createVerticalStrut(10));
+        panel.add(btnShowEmployees);
+        panel.add(Box.createVerticalStrut(10));
+        panel.add(btnEmployeeReport);
+        panel.add(Box.createVerticalStrut(10));
+        panel.add(btnExit);
+
+        exibirPainel(panel);
+    }
+
+    private void exibirExibirEstoque() {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        ;
+
+        JLabel titulo = new JLabel("Estoque:");
+        titulo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(titulo);
+        titulo.setFont(new Font("Arial", Font.BOLD, 16));
+        panel.add(Box.createVerticalStrut(20));
+
+        JLabel cabecalho = new JLabel("Código     Tipo     Marca     Tamanho     Preço");
+        cabecalho.setAlignmentX(Component.CENTER_ALIGNMENT);
+        int tamEstoque = gerenciadorEstoque.getTamanhoEstoque();
+
+        JButton btnBack = new JButton("Voltar");
+        btnBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirRealizarVenda();
+            }
+        });
+
+        btnBack.setAlignmentX(Component.CENTER_ALIGNMENT);
+        if (gerenciadorEstoque.getTamanhoEstoque() >= 1) {
+            panel.add(cabecalho);
+        } else {
+            JLabel estoqueVazio = new JLabel("O Estoque está Vazio!");
+            estoqueVazio.setAlignmentX(Component.CENTER_ALIGNMENT);
+            panel.add(estoqueVazio);
+        }
+
+        for (int i = 0; i < tamEstoque; i++) {
+
+            JLabel aux = new JLabel(gerenciadorEstoque.getSapatoPosicao(i));
+            aux.setAlignmentX(Component.CENTER_ALIGNMENT);
+            panel.add(aux);
+        }
+
+        panel.add(Box.createVerticalStrut(20));
+        panel.add(btnBack, BorderLayout.SOUTH);
+
+        exibirPainel(panel);
+    }
+
+    // realizar venda;
+
+    private void exibirRealizarVendaSapato() {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        JLabel mensagemLabel = new JLabel("Digite o codigo do produto: ");
+        mensagemLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(mensagemLabel);
+        panel.add(Box.createVerticalStrut(20));
+
+        JTextField codigoField = new JTextField(10);
+        JLabel codigoLabel = new JLabel("Codigo do produto: ");
+        codigoField.setAlignmentX(Component.CENTER_ALIGNMENT);
+        codigoLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JButton btnVender = new JButton("Vender");
+        JButton btnBack = new JButton("Voltar");
+        btnVender.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btnBack.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        // Ação de realizar venda
+        btnVender.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Adicione aqui a lógica para realizar a venda do produto com o código
+                // fornecido.
+                // Você pode chamar métodos da sua classe CentralVendas para lidar com a venda.
+
+                // Após realizar a venda, retornar à primeira página de "Realizar Venda"
+                exibirRealizarVenda();
+            }
+        });
+
+        btnBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Retornar à primeira página de "Realizar Venda"
+                exibirRealizarVenda();
+            }
+        });
+
+        panel.add(codigoLabel);
+        panel.add(codigoField);
+        panel.add(Box.createVerticalStrut(10));
+        panel.add(btnVender);
+        panel.add(Box.createVerticalStrut(10));
+        panel.add(btnBack);
+
+        exibirPainel(panel);
+    }
+
+    private void exibirContratarFuncionario() {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        JLabel cabecalho = new JLabel("Contratar Funcionário");
+        panel.add(cabecalho);
+        cabecalho.setFont(new Font("Arial", Font.BOLD, 16));
+        panel.add(Box.createVerticalStrut(20));
+
+        JTextField nomeField = new JTextField(10);
+        JLabel nomeLabel = new JLabel("Nome do Funcionário:");
+
+        JButton btnOK = new JButton("OK");
+        JButton btnBack = new JButton("Voltar");
+
+        btnOK.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                // contrata funcionario
+                centralVendas.contratarFuncionario(nomeField.getText());
+
+                exibirRealizarVenda();
+            }
+        });
+        btnBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirRealizarVenda();
+            }
+        });
+
+        panel.add(nomeLabel);
+        panel.add(nomeField);
+        panel.add(btnOK);
+        panel.add(btnBack);
+
+        exibirPainel(panel);
+    }
+
+    private void exibirDemitirFuncionario() {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        JLabel cabecalho = new JLabel("Demitir Funcionário");
+        panel.add(cabecalho);
+        cabecalho.setFont(new Font("Arial", Font.BOLD, 16));
+        panel.add(Box.createVerticalStrut(20));
+
+        JTextField nomeField = new JTextField(10);
+        JLabel nomeLabel = new JLabel("Nome do Funcionário:");
+
+        JButton btnOK = new JButton("OK");
+        JButton btnBack = new JButton("Voltar");
+
+        btnOK.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                // demitir funcionario
+                centralVendas.demitirFuncionario(nomeField.getText());
+
+                exibirRealizarVenda();
+            }
+        });
+        btnBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirRealizarVenda();
+            }
+        });
+
+        panel.add(nomeLabel);
+        panel.add(nomeField);
+        panel.add(btnOK);
+        panel.add(btnBack);
+
+        exibirPainel(panel);
+    }
+
+    private void exibirListaFuncionarios() {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        JLabel cabecalho = new JLabel("Lista Funcionarios:");
+        cabecalho.setAlignmentX(Component.CENTER_ALIGNMENT);
+        cabecalho.setFont(new Font("Arial", Font.BOLD, 16));
+        panel.add(cabecalho);
+        panel.add(Box.createVerticalStrut(20));
+
+        int numFuncionarios = centralVendas.numFuncionarios();
+
+        if (numFuncionarios < 1) {
+            JLabel nenhumFuncionario = new JLabel("Você não tem Funcionarios!");
+            nenhumFuncionario.setAlignmentX(Component.CENTER_ALIGNMENT);
+            panel.add(nenhumFuncionario);
+            panel.add(Box.createVerticalStrut(10));
+        }
+
+        JButton btnBack = new JButton("Voltar");
+        btnBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirRealizarVenda();
+            }
+        });
+        btnBack.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        for (int c = 0; c < numFuncionarios; c++) {
+
+            JLabel funcionario = new JLabel(centralVendas.getNomeFuncionarioPos(c));
+            funcionario.setAlignmentX(Component.CENTER_ALIGNMENT);
+            panel.add(funcionario);
+            panel.add(Box.createVerticalStrut(10));
+        }
+
+        panel.add(btnBack, BorderLayout.SOUTH);
+        exibirPainel(panel);
+    }
+
+    private void exibirRelatorioFuncionario() {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        JLabel cabecalho = new JLabel("Relatório Funcionarios:");
+        cabecalho.setAlignmentX(Component.CENTER_ALIGNMENT);
+        cabecalho.setFont(new Font("Arial", Font.BOLD, 16));
+        panel.add(cabecalho);
+        panel.add(Box.createVerticalStrut(20));
+
+        int numFuncionarios = centralVendas.numFuncionarios();
+        if (numFuncionarios < 1) {
+            JLabel nenhumFuncionario = new JLabel("Você não tem Funcionarios!");
+            nenhumFuncionario.setAlignmentX(Component.CENTER_ALIGNMENT);
+            panel.add(nenhumFuncionario);
+            panel.add(Box.createVerticalStrut(10));
+        }
+
+        JButton btnBack = new JButton("Voltar");
+        btnBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirRealizarVenda();
+            }
+        });
+        btnBack.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        for (int c = 0; c < numFuncionarios; c++) {
+
+            JLabel nome = new JLabel(centralVendas.getNomeFuncionarioPos(c));
+            nome.setAlignmentX(Component.CENTER_ALIGNMENT);
+            panel.add(nome);
+            JLabel valorVendido = new JLabel(centralVendas.getRelatorioValorVendidoFuncionarioPos(c));
+            valorVendido.setAlignmentX(Component.CENTER_ALIGNMENT);
+            panel.add(valorVendido);
+
+            int numProdutosVendidos = centralVendas.getNumProdutosFuncionarioPos(c);
+            if (numProdutosVendidos >= 1) {
+                JLabel tituloProdutosVendidos = new JLabel("Lista de Produtos Vendidos:");
+                tituloProdutosVendidos.setAlignmentX(Component.CENTER_ALIGNMENT);
+                panel.add(tituloProdutosVendidos);
+                JLabel cabecalhoProdutosVendidos = new JLabel("Código     Tipo     Marca     Tamanho     Preço");
+                cabecalhoProdutosVendidos.setAlignmentX(Component.CENTER_ALIGNMENT);
+                panel.add(cabecalhoProdutosVendidos);
+
+            } else {
+                JLabel nenhumProdutoVendido = new JLabel("Nenhum Produto Vendido!");
+                nenhumProdutoVendido.setAlignmentX(Component.CENTER_ALIGNMENT);
+                panel.add(nenhumProdutoVendido);
+            }
+
+            for (int a = 0; a < numProdutosVendidos; a++) {
+                JLabel produtoVendido = new JLabel(centralVendas.getProdutoPosFuncionario(c, a));
+                produtoVendido.setAlignmentX(Component.BOTTOM_ALIGNMENT);
+                panel.add(produtoVendido);
+            }
+            panel.add(Box.createVerticalStrut(10));
+        }
+
+        panel.add(btnBack, BorderLayout.SOUTH);
+        exibirPainel(panel);
+    }
+
+    private void exibirPainel(JPanel panel) {
+        if (currentPanel != null) {
+            remove(currentPanel);
+        }
+        currentPanel = panel;
+        add(panel, BorderLayout.CENTER);
+        revalidate();
+        repaint();
+    }
+}
