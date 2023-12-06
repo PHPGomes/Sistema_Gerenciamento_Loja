@@ -159,7 +159,7 @@ public class SistemaLoja extends JFrame {
             exibirPainel(panel);
         }
     
-        //adicionar sapato Feito!
+        
         private void exibirAdicionarSapato() {
             JPanel panel = new JPanel();
             panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -230,8 +230,6 @@ public class SistemaLoja extends JFrame {
         }
 
 
-    
-        //remover sapato Feito!
         private void exibirRemoverSapato() {
             JPanel panel = new JPanel();
             panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -331,8 +329,6 @@ public class SistemaLoja extends JFrame {
         }
     
 
-
-
         private void exibirRelatorioEstoque() {
             JPanel panel = new JPanel();
             panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -368,10 +364,6 @@ public class SistemaLoja extends JFrame {
             exibirPainel(panel);
         }
     
-
-
-
-        
 
         private void exibirRealizarVenda() {
             JPanel panel = new JPanel();
@@ -484,41 +476,7 @@ public class SistemaLoja extends JFrame {
             exibirPainel(panel);
         }
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //contratar funcionario Feito!!
+   
         private void exibirContratarFuncionario() {
             JPanel panel = new JPanel();
             panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -555,7 +513,6 @@ public class SistemaLoja extends JFrame {
         }
     
 
-        //demitir funcionario Feito!
         private void exibirDemitirFuncionario() {
             JPanel panel = new JPanel();
             panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -596,10 +553,33 @@ public class SistemaLoja extends JFrame {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         private void exibirListaFuncionarios() {
             JPanel panel = new JPanel();
-            panel.setLayout(new BorderLayout());
-    
+            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+            JLabel cabecalho = new JLabel("Lista Funcionarios:");
+            cabecalho.setAlignmentX(Component.CENTER_ALIGNMENT);
+            panel.add(cabecalho);
+            cabecalho.setFont(new Font("Arial", Font.BOLD,16));
+            panel.add(Box.createVerticalStrut(20)); 
+            
+
+            
     
             JButton btnBack = new JButton("Voltar");
             btnBack.addActionListener(new ActionListener() {
@@ -609,16 +589,50 @@ public class SistemaLoja extends JFrame {
                 }
             });
     
+
+
+
             panel.add(btnBack, BorderLayout.SOUTH);
-    
             exibirPainel(panel);
         }
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         private void exibirRelatorioFuncionario() {
             JPanel panel = new JPanel();
-            panel.setLayout(new BorderLayout());
+            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
     
         
+
+
+        JLabel cabecalho = new JLabel("Relatório Funcionarios:");
+        cabecalho.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(cabecalho);
+        cabecalho.setFont(new Font("Arial", Font.BOLD,16));
+        panel.add(Box.createVerticalStrut(20)); 
+
+
+
+
+
+
+
+
+
     
             JButton btnBack = new JButton("Voltar");
             btnBack.addActionListener(new ActionListener() {
@@ -633,6 +647,27 @@ public class SistemaLoja extends JFrame {
             exibirPainel(panel);
         }
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         private void exibirPainel(JPanel panel) {
             if (currentPanel != null) {
                 remove(currentPanel);

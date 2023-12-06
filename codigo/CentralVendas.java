@@ -28,24 +28,7 @@ public class CentralVendas {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-    private void execEscolha(String escolha){
-        if(escolha.equals("1")){
-            exibirEstoque();
-        }
-
-        else if(escolha.equals("2")){
+        if(escolha.equals("2")){
             String nome;
             int codigo;
             System.out.println("Digite o nome do funcionario que realizou a venda");
@@ -71,7 +54,7 @@ public class CentralVendas {
             relacaoFuncionarios.relatorioFuncionarios();
         }
 
-    }
+    
 
     private Funcionario buscarFuncionario(String nome){
         return relacaoFuncionarios.buscarFuncionario(nome);
