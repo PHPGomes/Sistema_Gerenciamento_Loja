@@ -29,6 +29,7 @@ public class GerenciadorEstoque {
         return estoque.getSapatoPosicao(posicao);
     }
   
+    
 
     private void lerEscolha(){
         variavel = Integer.parseInt(leitura.nextLine());
