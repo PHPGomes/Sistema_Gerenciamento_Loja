@@ -216,7 +216,14 @@ public class Estoque {
         return "0";
     }
 
-
+    public boolean temCodigo(int codigo){
+        for (Sapato s : estoque) {
+            if(s.getCodigo() == codigo){
+                return true;
+            }
+        }
+        return false;
+    }
 
 
 

@@ -71,4 +71,8 @@ public class GerenciadorEstoque {
         return estoque.compararPrecoPorPosicao( pos, precoMaximo, precoMinimo);
     }
 
+    public boolean temCodigo(int codigo){
+        return estoque.temCodigo(codigo);
+    }
+
 }
