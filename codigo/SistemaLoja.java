@@ -1,23 +1,43 @@
 package codigo;
 
-//Bibliotecas gráficas para java
+// Bibliotecas gráficas para Java
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-//JFrame é uma classe com janela GUI
+/**
+ * A classe SistemaLoja representa a interface gráfica do sistema de loja.
+ * Estende a classe JFrame para criar uma janela GUI.
+ * 
+ * Ela gerencia o estoque, as vendas e exibe diferentes painéis para interação do usuário.
+ * 
+ * Utiliza bibliotecas gráficas do Java (javax.swing) para criar a interface.
+ * 
+ * @author Pedro Henrique Pigozzi Gomes;
+ * @author Victor Hugo Daia Lorenzato;
+ */
 public class SistemaLoja extends JFrame {
+
+    /** Instância única do GerenciadorEstoque. */
     private GerenciadorEstoque gerenciadorEstoque = GerenciadorEstoque.getInstance();
+
+    /** Instância da CentralVendas para gerenciar as operações de vendas. */
     private CentralVendas centralVendas = new CentralVendas();
-    // Cria instância da classe e configura o tamanho da janela e a torna visvel
 
+    /** Painel atual que está sendo exibido na janela. */
+    private JPanel currentPanel;
+
+    /**
+     * Método principal que inicia a aplicação.
+     * Configura a janela, define seu tamanho e a torna visível.
+     *
+     * @param args Argumentos da linha de comando (não utilizados).
+     */
     public static void main(String[] args) {
-
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-
                 SistemaLoja sistemaLoja = new SistemaLoja();
                 sistemaLoja.setSize(600, 500);
                 sistemaLoja.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -26,11 +46,10 @@ public class SistemaLoja extends JFrame {
         });
     }
 
-    // Armazena o painel atual que está sendo exibido
-    private JPanel currentPanel;
-
-    // Contrutor define o título da janela e efine um layout de borda e chama a
-    // página inicial.
+    /**
+     * Construtor da classe SistemaLoja.
+     * Define o título da janela, o layout, o fundo e chama a exibição da página inicial.
+     */
     public SistemaLoja() {
         setTitle("Sistema de Loja");
         setLayout(new FlowLayout());
@@ -39,6 +58,9 @@ public class SistemaLoja extends JFrame {
         exibirPaginaInicial();
     }
 
+    /**
+     * Exibe a página inicial do sistema com opções para gerenciar estoque, realizar vendas ou sair.
+     */
     private void exibirPaginaInicial() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -62,7 +84,7 @@ public class SistemaLoja extends JFrame {
         btnSell.setAlignmentX(Component.CENTER_ALIGNMENT);
         btnExit.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        // gerenciar estoque
+        // Gerenciar Estoque
         btnManageStock.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -70,8 +92,7 @@ public class SistemaLoja extends JFrame {
             }
         });
 
-        // vender
-
+        // Realizar Venda
         btnSell.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -79,7 +100,7 @@ public class SistemaLoja extends JFrame {
             }
         });
 
-        // sair
+        // Sair
         btnExit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -97,6 +118,9 @@ public class SistemaLoja extends JFrame {
         exibirPainel(panel);
     }
 
+    /**
+    * Exibe o painel de gerenciamento de estoque, permitindo ao usuário adicionar, remover, buscar sapatos e gerar relatório de estoque.
+    */
     private void exibirGerenciarEstoque() {
 
         JPanel panel = new JPanel();
@@ -163,6 +187,10 @@ public class SistemaLoja extends JFrame {
         exibirPainel(panel);
     }
 
+    /**
+    * Exibe o painel para adicionar um sapato ao estoque.
+    * O usuário pode escolher entre adicionar um Sapato Social ou um Tênis de Corrida.
+    */
     private void exibirAdicionarSapato() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -240,6 +268,11 @@ public class SistemaLoja extends JFrame {
         exibirPainel(panel);
     }
 
+    /**
+    * Exibe o painel para remover um sapato do estoque.
+    * O usuário pode informar o código do produto a ser removido. 
+    * Após a remoção, o método retorna à tela de gerenciamento de estoque.
+    */
     private void exibirRemoverSapato() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -280,6 +313,10 @@ public class SistemaLoja extends JFrame {
         exibirPainel(panel);
     }
 
+    /**
+    * Exibe o painel para buscar sapatos no estoque com base em diferentes métodos, como código, tipo, marca, faixa de preço ou todos.
+    * O usuário pode escolher o método desejado, e o método associa ActionListener para responder às interações do usuário.
+    */
     private void exibirBuscarSapato() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -362,6 +399,11 @@ public class SistemaLoja extends JFrame {
         exibirPainel(panel);
     }
 
+    /**
+    * Exibe o relatório de estoque com detalhes sobre os sapatos disponíveis.
+    * Caso o estoque esteja vazio, uma mensagem informando isso será exibida.
+    * O usuário pode retornar à tela de gerenciamento de estoque.
+    */
     private void exibirRelatorioEstoque() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -406,6 +448,12 @@ public class SistemaLoja extends JFrame {
         exibirPainel(panel);
     }
 
+    /**
+    * Exibe o painel principal para realizar vendas, permitindo ao usuário escolher entre diferentes opções, 
+    * como exibir estoque, realizar venda, contratar funcionário, demitir funcionário, 
+    * exibir lista de funcionários, relatório de funcionários ou sair do sistema.
+    * Cada opção é associada a um ActionListener para responder às interações do usuário.
+    */
     private void exibirRealizarVenda() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -493,8 +541,11 @@ public class SistemaLoja extends JFrame {
         exibirPainel(panel);
     }
 
-
-
+    /**
+    * Exibe o painel para realizar a venda de um sapato, solicitando ao usuário o código do produto 
+    * e o nome do vendedor. Ao realizar a venda, o método retorna à tela principal de realizar vendas.
+    * Se houver erros durante a venda, exibe uma mensagem de erro.
+    */
     private void exibirRealizarVendaSapato() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -560,6 +611,10 @@ public class SistemaLoja extends JFrame {
         exibirPainel(panel);
     }
 
+    /**
+    * Exibe um painel de erro indicando que o código do produto ou o funcionário não foi encontrado, 
+    * resultando em uma venda não realizada. O usuário pode voltar à tela principal de realizar vendas.
+    */
     private void erroVenda(){
         
             JPanel panel = new JPanel();
@@ -591,8 +646,10 @@ public class SistemaLoja extends JFrame {
     
     }
 
-
-
+    /**
+    * Exibe o estoque atual na forma de uma lista com informações sobre cada sapato,
+    * incluindo código, tipo, marca, tamanho e preço. O usuário pode voltar à tela principal de realizar vendas.
+    */
     private void exibirExibirEstoque() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -638,6 +695,10 @@ public class SistemaLoja extends JFrame {
         exibirPainel(panel);
     }
 
+    /**
+    * Exibe um painel para contratação de um novo funcionário, solicitando ao usuário o nome do funcionário.
+    * Ao contratar o funcionário, o método retorna à tela principal de realizar vendas.
+    */
     private void exibirContratarFuncionario() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -678,6 +739,10 @@ public class SistemaLoja extends JFrame {
         exibirPainel(panel);
     }
 
+    /**
+    * Exibe um painel para demissão de um funcionário, solicitando ao usuário o nome do funcionário a ser demitido.
+    * Ao demitir o funcionário, o método retorna à tela principal de realizar vendas.
+    */
     private void exibirDemitirFuncionario() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -718,6 +783,11 @@ public class SistemaLoja extends JFrame {
         exibirPainel(panel);
     }
 
+    /**
+    * Exibe uma lista dos funcionários contratados, mostrando o nome de cada um.
+    * Se não houver funcionários contratados, exibe uma mensagem informando que não há funcionários.
+    * O usuário pode voltar à tela principal de realizar vendas.
+    */
     private void exibirListaFuncionarios() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -758,6 +828,10 @@ public class SistemaLoja extends JFrame {
         exibirPainel(panel);
     }
 
+    /**
+    * Exibe um relatório contendo informações sobre os funcionários, incluindo nome, valor total vendido e
+    * lista de produtos vendidos por cada funcionário. Permite ao usuário voltar à tela principal de realizar vendas.
+    */
     private void exibirRelatorioFuncionario() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -821,6 +895,10 @@ public class SistemaLoja extends JFrame {
         exibirPainel(panel);
     }
 
+    /**
+    * Exibe um painel para buscar sapatos pelo código. O usuário é solicitado a fornecer o código do produto.
+    * Permite ao usuário voltar à tela de gerenciamento de estoque ou exibir os sapatos encontrados pelo código.
+     */
     private void exibirBuscarSapatoCodigo() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -869,6 +947,10 @@ public class SistemaLoja extends JFrame {
 
     }
 
+    /**
+    * Exibe os sapatos encontrados pelo código fornecido, incluindo informações como código, tipo, marca, tamanho e preço.
+    * Permite ao usuário voltar à tela de gerenciamento de estoque.
+     */
     private void exibirSapatoBuscadoCodigo(int codigo) {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -919,8 +1001,10 @@ public class SistemaLoja extends JFrame {
 
     }
 
-
-
+    /**
+    * Exibe um painel para buscar sapatos por marca. O usuário é solicitado a fornecer a marca do sapato.
+    * Permite ao usuário voltar à tela de gerenciamento de estoque ou exibir os sapatos encontrados pela marca.
+    */
     private void exibirBuscadoMarca() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -968,6 +1052,13 @@ public class SistemaLoja extends JFrame {
         exibirPainel(panel);
     }
 
+    /**
+    * Exibe os sapatos encontrados com base na marca fornecida, incluindo informações como código, tipo, marca, tamanho e preço.
+    * Se não houver sapatos com a marca fornecida, exibe uma mensagem indicando a ausência de sapatos.
+    * Permite ao usuário voltar à tela de gerenciamento de estoque.
+    *
+    * @param marca A marca dos sapatos a serem buscados.
+    */
     private void exibirSapatoBuscadoMarca(String marca) {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -1017,7 +1108,10 @@ public class SistemaLoja extends JFrame {
 
     }
 
-
+    /**
+    * Exibe um painel de busca por tipo de sapato, oferecendo opções para buscar sapatos sociais ou de corrida.
+    * Permite ao usuário voltar à tela de gerenciamento de estoque ou exibir os resultados da busca pelo tipo de sapato escolhido.
+    */
     private void exibirBuscarTipo(){
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -1055,8 +1149,6 @@ public class SistemaLoja extends JFrame {
             }
         });
         btnBack.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-
         panel.add(btnSapatoSocial);
         panel.add(Box.createVerticalStrut(10));
         panel.add(btnSapatoCorrida);
@@ -1065,8 +1157,13 @@ public class SistemaLoja extends JFrame {
         exibirPainel(panel);
     }
 
-
-
+    /**
+    * Exibe os sapatos encontrados com base no tipo fornecido, incluindo informações como código, tipo, marca, tamanho e preço.
+    * Se não houver sapatos com o tipo fornecido, exibe uma mensagem indicando a ausência de sapatos.
+    * Permite ao usuário voltar à tela de gerenciamento de estoque.
+    *
+    * @param tipo O tipo de sapato a ser buscado (por exemplo, "Social" ou "Corrida").
+    */
     private void exibirResultadoBuscaTipo(String tipo) {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -1098,7 +1195,6 @@ public class SistemaLoja extends JFrame {
             panel.add(nenhumSapatoEncontrado);
         }
 
-
         JButton btnBack = new JButton("Voltar");
         btnBack.addActionListener(new ActionListener() {
             @Override
@@ -1114,7 +1210,10 @@ public class SistemaLoja extends JFrame {
 
     }
 
-
+    /**
+    * Exibe um painel de busca por faixa de preço, solicitando ao usuário que forneça um preço mínimo e máximo.
+    * Permite ao usuário voltar à tela de gerenciamento de estoque ou exibir os resultados da busca pela faixa de preço escolhida.
+    */
     private void exibirBuscarFaixaPreco(){
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -1125,7 +1224,6 @@ public class SistemaLoja extends JFrame {
         titulo.setFont(new Font("Arial", Font.BOLD, 16));
         panel.add(Box.createVerticalStrut(20));
      
-
         JLabel precoMinimoLabel = new JLabel("Digite o Preço Mínimo");
         precoMinimoLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         JLabel precoMaximoLabel = new JLabel("Digite o Preço Máximo");
@@ -1134,11 +1232,6 @@ public class SistemaLoja extends JFrame {
         precoMinimoField.setAlignmentX(Component.CENTER_ALIGNMENT);
         JTextField precoMaximoField = new JTextField(10);
         precoMaximoField.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-
-
-
-
 
         JButton btnBuscar = new JButton("Buscar");
         btnBuscar.addActionListener(new ActionListener() {
@@ -1171,9 +1264,14 @@ public class SistemaLoja extends JFrame {
         exibirPainel(panel);
     }
 
-
-
-
+    /**
+    * Exibe os sapatos encontrados com base na faixa de preço fornecida, incluindo informações como código, tipo, marca, tamanho e preço.
+    * Se não houver sapatos dentro da faixa de preço fornecida, exibe uma mensagem indicando a ausência de sapatos.
+    * Permite ao usuário voltar à tela de gerenciamento de estoque.
+    *
+    * @param precoMinimo O preço mínimo da faixa de preço.
+    * @param precoMaximo O preço máximo da faixa de preço.
+    */
     private void exibirResultadoBuscaFaixaPreco(double precoMinimo, Double precoMaximo) {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -1206,7 +1304,6 @@ public class SistemaLoja extends JFrame {
             panel.add(nenhumSapatoEncontrado);
         }
 
-
         JButton btnBack = new JButton("Voltar");
         btnBack.addActionListener(new ActionListener() {
             @Override
@@ -1222,7 +1319,11 @@ public class SistemaLoja extends JFrame {
 
     }
 
-
+    /**
+    * Exibe todos os sapatos presentes no estoque, incluindo informações como código, tipo, marca, tamanho e preço.
+    * Se o estoque estiver vazio, exibe uma mensagem indicando a ausência de sapatos.
+    * Permite ao usuário voltar à tela de gerenciamento de estoque.
+    */
     private void exibirBuscarTodos() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -1268,12 +1369,12 @@ public class SistemaLoja extends JFrame {
 
     }
 
-
-
-
-
-
-
+    /**
+    * Exibe o painel fornecido no centro da interface gráfica, substituindo o painel anterior (se existir).
+    * Utilizado para exibir diferentes telas de funcionalidade na aplicação.
+    *
+    * @param panel O painel a ser exibido.
+    */
     private void exibirPainel(JPanel panel) {
         if (currentPanel != null) {
             remove(currentPanel);
@@ -1283,4 +1384,5 @@ public class SistemaLoja extends JFrame {
         revalidate();
         repaint();
     }
+
 }
