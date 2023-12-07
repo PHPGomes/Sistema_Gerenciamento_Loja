@@ -85,6 +85,7 @@ public class Estoque {
                 System.out.println(s);
             }
         }
+        return "0";
     }
 
     public void buscarTipo() {
