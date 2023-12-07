@@ -10,7 +10,7 @@ public class Estoque {
         estoque = new LinkedList<>();
     }
 
-    public static Estoque getIntance() { // Padrão de projeto Singleton
+    public static Estoque getIntance() { 
         if (estoqueUnico == null) {
             estoqueUnico = new Estoque();
         }
@@ -125,5 +125,4 @@ public class Estoque {
         }
         return aux;
     }
-
 }
