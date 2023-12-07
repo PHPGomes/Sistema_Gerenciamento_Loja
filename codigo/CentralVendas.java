@@ -1,7 +1,5 @@
 package codigo;
 
-import java.util.Scanner;
-
 public class CentralVendas {
     private RelacaoFuncionarios relacaoFuncionarios;
     private Estoque estoque;
@@ -13,12 +11,10 @@ public class CentralVendas {
 
     public void contratarFuncionario(String nome) {
         relacaoFuncionarios.adicionarFuncionario(new Funcionario(nome));
-        relacaoFuncionarios.exibirListaFuncionarios();
     }
 
     public void demitirFuncionario(String nome) {
         relacaoFuncionarios.demitirFuncionario(nome);
-        relacaoFuncionarios.exibirListaFuncionarios();
     }
 
     public int numFuncionarios() {
@@ -50,7 +46,7 @@ public class CentralVendas {
         return relacaoFuncionarios.buscarFuncionario(nome);
     }
 
-    
+
     public void realizarVenda(int codigo, String nome){
         associarVenda(codigo, buscarFuncionario(nome));
     }

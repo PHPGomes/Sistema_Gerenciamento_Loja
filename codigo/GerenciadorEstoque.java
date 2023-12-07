@@ -1,7 +1,5 @@
 package codigo;
 
-import java.util.Scanner;
-
 public class GerenciadorEstoque {
     private static GerenciadorEstoque gerenciadorUnico;
     private Estoque estoque;
@@ -30,15 +28,13 @@ public class GerenciadorEstoque {
         return estoque.compararCodigoPosicao(codigo, posicao);
     }
 
-
-
+    
     public String buscarCodigo(int codigo) {
         return estoque.buscarCodigo(codigo);
     }
 
     public void removerSapato(int codigo) {
         estoque.removerSapato(codigo);
-        estoque.gerarRelatorio();
     }
 
     public void adicionarSapato(int tamanho, int codigo, double preco, String tipo, String marca) {
@@ -50,8 +46,6 @@ public class GerenciadorEstoque {
         else if (tipo.equals("2")) {
             estoque.adicionarSapato(new SapatoCorrida(tamanho, codigo, marca, preco));
         }
-
-        estoque.gerarRelatorio();
 
     }
 

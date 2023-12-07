@@ -41,17 +41,6 @@ public class RelacaoFuncionarios {
         return null;
     }
 
-    public void exibirListaFuncionarios() {
-        int num = 1;
-        System.out.println("Lista funcionarios:");
-        for (Funcionario f : listaFuncionarios) {
-            System.out.printf("funcionario %d: ", num);
-            System.out.println(f);
-            num++;
-        }
-
-    }
-
     public String getProdutoPosFuncionario(int pFuncionario, int pProduto) {
         return listaFuncionarios.get(pFuncionario).getProdutoPos(pProduto);
     }
@@ -71,7 +60,5 @@ public class RelacaoFuncionarios {
             }
         }
         return false;
-
     }
-
 }
