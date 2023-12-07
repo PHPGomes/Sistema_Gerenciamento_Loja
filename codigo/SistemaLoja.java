@@ -294,11 +294,11 @@ public class SistemaLoja extends JFrame {
         chooseMethodLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         
 
-        JButton btnCode = new JButton("Código");
-        JButton btnType = new JButton("Tipo");
-        JButton btnBrand = new JButton("Marca");
-        JButton btnPriceRange = new JButton("Faixa de preço");
-        JButton btnAll = new JButton("Todos");
+        JButton btnCode = new JButton("        Código       ");
+        JButton btnType = new JButton("           Tipo         ");
+        JButton btnBrand = new JButton("         Marca       ");
+        JButton btnPriceRange = new JButton(" Faixa de preço");
+        JButton btnAll = new JButton("         Todos        ");
         JButton btnBack = new JButton("Voltar");
 
         btnCode.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -335,7 +335,7 @@ public class SistemaLoja extends JFrame {
         btnAll.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                exibirGerenciarEstoque();
+                exibirBuscarTodos();
             }
         });
         btnBack.addActionListener(new ActionListener() {
@@ -348,10 +348,15 @@ public class SistemaLoja extends JFrame {
         panel.add(chooseMethodLabel);
         panel.add(Box.createVerticalStrut(10));
         panel.add(btnCode);
+        panel.add(Box.createVerticalStrut(10));
         panel.add(btnType);
+        panel.add(Box.createVerticalStrut(10));
         panel.add(btnBrand);
+        panel.add(Box.createVerticalStrut(10));
         panel.add(btnPriceRange);
+        panel.add(Box.createVerticalStrut(10));
         panel.add(btnAll);
+        panel.add(Box.createVerticalStrut(10));
         panel.add(btnBack);
 
         exibirPainel(panel);
@@ -924,7 +929,7 @@ public class SistemaLoja extends JFrame {
         panel.add(Box.createVerticalStrut(20));
      
 
-        JButton btnSapatoSocial = new JButton("Sapato Social");
+        JButton btnSapatoSocial = new JButton(" Sapato Social ");
         btnSapatoSocial.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -1079,10 +1084,27 @@ public class SistemaLoja extends JFrame {
         titulo.setFont(new Font("Arial", Font.BOLD, 16));
         panel.add(Box.createVerticalStrut(20));
      
-        
+        int tamEstoque = gerenciadorEstoque.getTamanhoEstoque();
+        int numSapaatosEncontrados = 0;
+        for(int c = 0; c < tamEstoque ; c++){
+            if (!gerenciadorEstoque.compararPrecoPorPosicao(c,precoMaximo,precoMinimo).equals("0")){
+                numSapaatosEncontrados++;
+                JLabel sapato = new JLabel(gerenciadorEstoque.compararPrecoPorPosicao(c,precoMaximo,precoMinimo));
+                sapato.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-
-
+                if(numSapaatosEncontrados == 1){
+                    JLabel cabecalho = new JLabel("Código     Tipo     Marca     Tamanho     Preço");
+                    cabecalho.setAlignmentX(Component.CENTER_ALIGNMENT);
+                    panel.add(cabecalho);
+                }
+                panel.add(sapato);
+            }
+        }
+        if(numSapaatosEncontrados == 0){
+            JLabel nenhumSapatoEncontrado = new JLabel("Nenhum Sapato Encontrado!");
+            nenhumSapatoEncontrado.setAlignmentX(Component.CENTER_ALIGNMENT);
+            panel.add(nenhumSapatoEncontrado);
+        }
 
 
         JButton btnBack = new JButton("Voltar");
@@ -1094,7 +1116,53 @@ public class SistemaLoja extends JFrame {
         });
         btnBack.setAlignmentX(Component.CENTER_ALIGNMENT);
         
+        panel.add(Box.createVerticalStrut(10));
+        panel.add(btnBack);
+        exibirPainel(panel);
 
+    }
+
+
+    private void exibirBuscarTodos() {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        JLabel titulo = new JLabel("Todos os Sapatos:");
+        titulo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(titulo);
+        titulo.setFont(new Font("Arial", Font.BOLD, 16));
+        panel.add(Box.createVerticalStrut(20));
+     
+
+        int tamEstoque = gerenciadorEstoque.getTamanhoEstoque();
+
+        if(tamEstoque == 0){
+            JLabel estoqueVazio = new JLabel("Estoque Vazio");
+            estoqueVazio.setAlignmentX(Component.CENTER_ALIGNMENT);
+            panel.add(estoqueVazio);
+        }
+        else{
+            JLabel cabecalho = new JLabel("Código     Tipo     Marca     Tamanho     Preço");
+            cabecalho.setAlignmentX(Component.CENTER_ALIGNMENT);
+            panel.add(cabecalho);
+            for(int c = 0; c < tamEstoque ; c++){
+                JLabel sapato = new JLabel(gerenciadorEstoque.getSapatoPosicao(c));
+                sapato.setAlignmentX(Component.CENTER_ALIGNMENT);
+                panel.add(sapato);
+            }
+        }
+
+        JButton btnBack = new JButton("Voltar");
+        btnBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirGerenciarEstoque();
+            }
+        });
+        btnBack.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        
+        panel.add(Box.createVerticalStrut(10));
         panel.add(btnBack);
         exibirPainel(panel);
 
