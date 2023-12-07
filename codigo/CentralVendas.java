@@ -61,6 +61,10 @@ public class CentralVendas {
      * }
      */
 
+    public boolean tem(String nome){
+        return relacaoFuncionarios.tem(nome);
+    }
+
     private Funcionario buscarFuncionario(String nome) {
         return relacaoFuncionarios.buscarFuncionario(nome);
     }
@@ -70,7 +74,11 @@ public class CentralVendas {
         System.out.println(estoque);
     }
 
-    private void realizarVenda(int codigo, Funcionario f) {
+    public void realizarVenda(int codigo, String nome){
+        associarVenda(codigo, buscarFuncionario(nome));
+    }
+
+    private void associarVenda(int codigo, Funcionario f) {
         f.adiconarVenda(estoque.getSapato(codigo));// passar o sapato para o vendedor
         estoque.removerSapato(codigo);// tirar do estoque
     }

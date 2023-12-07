@@ -287,11 +287,11 @@ public class SistemaLoja extends JFrame {
         JLabel chooseMethodLabel = new JLabel("Escolha um método de busca:");
         chooseMethodLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JButton btnCode = new JButton("Código");
-        JButton btnType = new JButton("Tipo");
-        JButton btnBrand = new JButton("Marca");
-        JButton btnPriceRange = new JButton("Faixa de preço");
-        JButton btnAll = new JButton("Todos");
+        JButton btnCode = new JButton("        Código       ");
+        JButton btnType = new JButton("           Tipo         ");
+        JButton btnBrand = new JButton("         Marca       ");
+        JButton btnPriceRange = new JButton(" Faixa de preço");
+        JButton btnAll = new JButton("         Todos        ");
         JButton btnBack = new JButton("Voltar");
 
         btnCode.addActionListener(new ActionListener() {
@@ -303,25 +303,25 @@ public class SistemaLoja extends JFrame {
         btnType.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                exibirGerenciarEstoque();
+                exibirBuscarTipo();
             }
         });
         btnBrand.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                exibirGerenciarEstoque();
+                exibirBuscadoMarca();
             }
         });
         btnPriceRange.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                exibirGerenciarEstoque();
+                exibirBuscarFaixaPreco();
             }
         });
         btnAll.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                exibirGerenciarEstoque();
+                exibirBuscarTodos();
             }
         });
         btnBack.addActionListener(new ActionListener() {
@@ -333,10 +333,15 @@ public class SistemaLoja extends JFrame {
 
         panel.add(chooseMethodLabel);
         panel.add(btnCode);
+        panel.add(Box.createVerticalStrut(10));
         panel.add(btnType);
+        panel.add(Box.createVerticalStrut(10));
         panel.add(btnBrand);
+        panel.add(Box.createVerticalStrut(10));
         panel.add(btnPriceRange);
+        panel.add(Box.createVerticalStrut(10));
         panel.add(btnAll);
+        panel.add(Box.createVerticalStrut(10));
         panel.add(btnBack);
 
         exibirPainel(panel);
@@ -472,6 +477,106 @@ public class SistemaLoja extends JFrame {
 
         exibirPainel(panel);
     }
+
+
+
+    private void exibirRealizarVendaSapato() {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        JLabel mensagemLabel = new JLabel("Realizar Venda");
+        mensagemLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(mensagemLabel);
+        mensagemLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        panel.add(Box.createVerticalStrut(20));
+
+
+
+
+
+        JTextField codigoField = new JTextField(10);
+        JLabel codigoLabel = new JLabel("Codigo do produto: ");
+        codigoField.setAlignmentX(Component.CENTER_ALIGNMENT);
+        codigoLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JTextField vendedorField = new JTextField(10);
+        JLabel vendedorLabel = new JLabel("Nome do Vendedor");
+        vendedorField.setAlignmentX(Component.CENTER_ALIGNMENT);
+        vendedorLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JButton btnVender = new JButton("Vender");
+        JButton btnBack = new JButton("Voltar");
+        btnVender.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btnBack.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        // Ação de realizar venda
+        btnVender.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(centralVendas.tem(vendedorField.getText()) && gerenciadorEstoque.temCodigo(Integer.parseInt(codigoField.getText()))){
+                    centralVendas.realizarVenda(Integer.parseInt(codigoField.getText()),vendedorField.getText());
+                    exibirRealizarVenda();
+                }
+                else{
+                    erroVenda();
+                }
+                
+            }
+        });
+
+        btnBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirRealizarVenda();
+            }
+        });
+
+
+        panel.add(vendedorLabel);
+        panel.add(vendedorField);
+        panel.add(Box.createVerticalStrut(10));
+        panel.add(codigoLabel);
+        panel.add(codigoField);
+        panel.add(Box.createVerticalStrut(10));
+        panel.add(btnVender);
+        panel.add(Box.createVerticalStrut(10));
+        panel.add(btnBack);
+
+        exibirPainel(panel);
+    }
+
+    private void erroVenda(){
+        
+            JPanel panel = new JPanel();
+            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+    
+            JLabel titulo = new JLabel("Código ou Funcionário Não Encontrado!");
+            titulo.setAlignmentX(Component.CENTER_ALIGNMENT);
+            panel.add(titulo);
+            titulo.setFont(new Font("Arial", Font.BOLD, 16));
+            panel.add(Box.createVerticalStrut(20));
+
+            JLabel vendaNaoRealizada = new JLabel("Venda não Realizada!");
+            vendaNaoRealizada.setAlignmentX(Component.CENTER_ALIGNMENT);
+            panel.add(vendaNaoRealizada);
+            panel.add(Box.createVerticalStrut(10));
+
+            JButton btnBack = new JButton("Voltar");
+            btnBack.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    exibirRealizarVenda();
+                }
+            });
+            btnBack.setAlignmentX(Component.CENTER_ALIGNMENT);
+    
+    
+            panel.add(btnBack);
+            exibirPainel(panel);
+    
+    }
+
+
 
     private void exibirExibirEstoque() {
         JPanel panel = new JPanel();
@@ -743,7 +848,7 @@ public class SistemaLoja extends JFrame {
 
             for (int a = 0; a < numProdutosVendidos; a++) {
                 JLabel produtoVendido = new JLabel(centralVendas.getProdutoPosFuncionario(c, a));
-                produtoVendido.setAlignmentX(Component.BOTTOM_ALIGNMENT);
+                produtoVendido.setAlignmentX(Component.CENTER_ALIGNMENT);
                 panel.add(produtoVendido);
             }
             panel.add(Box.createVerticalStrut(10));

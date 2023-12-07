@@ -180,9 +180,52 @@ public class Estoque {
     }
 
     public String getSapatoPosicao(int pos) {
-        Sapato s = estoque.get(pos);
-        return s.toString();
+        return estoque.get(pos).toString();
     }
+
+
+    public String compararMarcaPosicao(int pos , String Marca){
+        if(estoque.get(pos).getMarca().equals(Marca)){
+            return estoque.get(pos).toString();
+        }
+        return "0";
+    }
+
+    public boolean existeMarca(String marca){
+        for (Sapato s : estoque) {
+            if(s.getMarca().equals(marca)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public String getComparaSapatoPosicaoTipo(int c, String tipo){
+        if(estoque.get(c).getTipo().equals(tipo)){
+            return estoque.get(c).toString();
+        }
+        return "0";
+    }
+
+
+
+    public String compararPrecoPorPosicao(int pos, double precoMaximo, double precoMinimo){
+        if(estoque.get(pos).getPreco() >= precoMinimo && estoque.get(pos).getPreco() <= precoMaximo ){
+            return estoque.get(pos).toString();
+        }
+        return "0";
+    }
+
+    public boolean temCodigo(int codigo){
+        for (Sapato s : estoque) {
+            if(s.getCodigo() == codigo){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 
     @Override
     public String toString() {

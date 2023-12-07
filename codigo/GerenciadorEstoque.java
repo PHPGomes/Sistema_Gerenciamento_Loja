@@ -4,12 +4,10 @@ import java.util.Scanner;
 
 public class GerenciadorEstoque {
     private static GerenciadorEstoque gerenciadorUnico;
-    private int variavel;
     private Estoque estoque;
-    private Scanner leitura;
 
     private GerenciadorEstoque() {
-        leitura = new Scanner(System.in);
+
         estoque = Estoque.getIntance();
     }
 
@@ -36,28 +34,6 @@ public class GerenciadorEstoque {
         }
     }
 
-    private void execEscolha(int escolha) {
-
-        if (variavel == 2) { // remover sapato
-            boolean removido;
-            System.out.print("Digite o codigo do produto: ");
-            int codigo = Integer.parseInt(leitura.nextLine());
-            removido = estoque.removerSapato(codigo);
-            if (removido) {
-                System.out.println("Sapato removido!\n\n");
-            } else {
-                System.out.println("Sapato nao encontrado!\n\n");
-            }
-        }
-
-        else if (variavel == 3) { // buscar sapato
-            estoque.buscarSapato();
-        }
-
-        else if (variavel == 4) {
-            estoque.gerarRelatorio();// gerar relatorio
-        }
-    }
 
     public void removerSapato(int codigo) {
         estoque.removerSapato(codigo);
@@ -76,6 +52,26 @@ public class GerenciadorEstoque {
 
         estoque.gerarRelatorio();
 
+    }
+
+    public boolean existeMarca(String marca){
+        return estoque.existeMarca(marca);
+    }
+
+    public String compararMarcaPosicao(int pos , String Marca){
+        return estoque.compararMarcaPosicao(pos , Marca);
+    }
+
+    public String getComparaSapatoPosicaoTipo(int c, String tipo){
+        return estoque.getComparaSapatoPosicaoTipo(c,tipo);
+    }
+
+    public String compararPrecoPorPosicao(int pos, double precoMaximo, double precoMinimo){
+        return estoque.compararPrecoPorPosicao( pos, precoMaximo, precoMinimo);
+    }
+
+    public boolean temCodigo(int codigo){
+        return estoque.temCodigo(codigo);
     }
 
 }
