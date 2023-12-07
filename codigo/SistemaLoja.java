@@ -8,8 +8,8 @@ import java.awt.event.ActionListener;
 
 //JFrame é uma classe com janela GUI
 public class SistemaLoja extends JFrame {
-    GerenciadorEstoque gerenciadorEstoque = GerenciadorEstoque.getInstance();
-    CentralVendas centralVendas = new CentralVendas();
+    private GerenciadorEstoque gerenciadorEstoque = GerenciadorEstoque.getInstance();
+    private CentralVendas centralVendas = new CentralVendas();
     // Cria instância da classe e configura o tamanho da janela e a torna visvel
 
     public static void main(String[] args) {
