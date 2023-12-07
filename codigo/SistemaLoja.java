@@ -317,19 +317,19 @@ public class SistemaLoja extends JFrame {
         btnType.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                exibirGerenciarEstoque();
+                exibirBuscarTipo();
             }
         });
         btnBrand.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                exibirGerenciarEstoque();
+                exibirBuscadoMarca();
             }
         });
         btnPriceRange.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                exibirGerenciarEstoque();
+                exibirBuscarFaixaPreco();
             }
         });
         btnAll.addActionListener(new ActionListener() {
@@ -813,6 +813,298 @@ public class SistemaLoja extends JFrame {
         exibirPainel(panel);
 
     }
+
+
+
+    private void exibirBuscadoMarca() {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        JLabel titulo = new JLabel("Buscar Por Marca");
+        titulo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(titulo);
+        titulo.setFont(new Font("Arial", Font.BOLD, 16));
+        panel.add(Box.createVerticalStrut(20));
+
+        JLabel marcaLabel = new JLabel("Digite a Marca:");
+        marcaLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JTextField marcaField = new JTextField(10);
+        marcaField.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JButton btnBuscar = new JButton("Buscar");
+        btnBuscar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirSapatoBuscadoMarca(marcaField.getText());
+            }
+        });
+        btnBuscar.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+
+        JButton btnBack = new JButton("Voltar");
+        btnBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirGerenciarEstoque();
+            }
+        });
+        btnBack.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+
+        panel.add(marcaLabel);
+        panel.add(Box.createVerticalStrut(10));
+        panel.add(marcaField);
+        panel.add(Box.createVerticalStrut(10));
+        panel.add(btnBuscar);
+        panel.add(Box.createVerticalStrut(10));
+        panel.add(btnBack);
+
+        exibirPainel(panel);
+    }
+
+    private void exibirSapatoBuscadoMarca(String marca) {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        JLabel titulo = new JLabel("Sapatos Encontrados:");
+        titulo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(titulo);
+        titulo.setFont(new Font("Arial", Font.BOLD, 16));
+        panel.add(Box.createVerticalStrut(20));
+
+        int tamEstoque = gerenciadorEstoque.getTamanhoEstoque();
+
+        if(gerenciadorEstoque.existeMarca(marca)){
+            JLabel cabecalho = new JLabel("Código     Tipo     Marca     Tamanho     Preço");
+            cabecalho.setAlignmentX(Component.CENTER_ALIGNMENT);
+            panel.add(cabecalho);
+        }
+        else{
+            JLabel cabecalho = new JLabel("Nenhum Sapato Encontrado!");
+            cabecalho.setAlignmentX(Component.CENTER_ALIGNMENT);
+            panel.add(cabecalho);
+        }
+
+        for(int c = 0; c < tamEstoque ; c++){
+            if(!gerenciadorEstoque.compararMarcaPosicao(c, marca).equals("0")){
+                JLabel sapatoEncontrado = new JLabel(gerenciadorEstoque.compararMarcaPosicao(c, marca));
+                sapatoEncontrado.setAlignmentX(Component.CENTER_ALIGNMENT);
+                panel.add(sapatoEncontrado);
+            }
+        }
+
+        
+
+        JButton btnBack = new JButton("Voltar");
+        btnBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirGerenciarEstoque();
+            }
+        });
+
+        btnBack.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(Box.createVerticalStrut(10));
+        panel.add(btnBack);
+
+        exibirPainel(panel);
+
+    }
+
+
+    private void exibirBuscarTipo(){
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        JLabel titulo = new JLabel("Buscar por Tipo");
+        titulo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(titulo);
+        titulo.setFont(new Font("Arial", Font.BOLD, 16));
+        panel.add(Box.createVerticalStrut(20));
+     
+
+        JButton btnSapatoSocial = new JButton("Sapato Social");
+        btnSapatoSocial.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirResultadoBuscaTipo("Social");
+            }
+        });
+        btnSapatoSocial.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JButton btnSapatoCorrida = new JButton("Sapato Corrida");
+        btnSapatoCorrida.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirResultadoBuscaTipo("Corrida");
+            }
+        });
+        btnSapatoCorrida.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JButton btnBack = new JButton("Voltar");
+        btnBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirGerenciarEstoque();
+            }
+        });
+        btnBack.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+
+        panel.add(btnSapatoSocial);
+        panel.add(Box.createVerticalStrut(10));
+        panel.add(btnSapatoCorrida);
+        panel.add(Box.createVerticalStrut(10));
+        panel.add(btnBack);
+        exibirPainel(panel);
+    }
+
+
+
+    private void exibirResultadoBuscaTipo(String tipo) {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        JLabel titulo = new JLabel("Sapatos Encontrados:");
+        titulo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(titulo);
+        titulo.setFont(new Font("Arial", Font.BOLD, 16));
+        panel.add(Box.createVerticalStrut(20));
+     
+        int tamEstoque = gerenciadorEstoque.getTamanhoEstoque();
+        int numSapatosEncontrados = 0;
+        for(int c = 0; c < tamEstoque; c++){
+            if(!gerenciadorEstoque.getComparaSapatoPosicaoTipo(c,tipo).equals("0")){
+                numSapatosEncontrados++;
+                JLabel sapato = new JLabel(gerenciadorEstoque.getComparaSapatoPosicaoTipo(c,tipo));
+                sapato.setAlignmentX(Component.CENTER_ALIGNMENT);
+                if(numSapatosEncontrados == 1){
+                    JLabel cabecalho = new JLabel("Código     Tipo     Marca     Tamanho     Preço");
+                    cabecalho.setAlignmentX(Component.CENTER_ALIGNMENT);
+                    panel.add(cabecalho);
+                }
+                panel.add(sapato);
+            }
+        }
+        if(numSapatosEncontrados == 0){
+            JLabel nenhumSapatoEncontrado = new JLabel("Nenhum Sapato Encontrado!");
+            nenhumSapatoEncontrado.setAlignmentX(Component.CENTER_ALIGNMENT);
+            panel.add(nenhumSapatoEncontrado);
+        }
+
+
+        JButton btnBack = new JButton("Voltar");
+        btnBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirGerenciarEstoque();
+            }
+        });
+        btnBack.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
+        panel.add(Box.createVerticalStrut(10));
+        panel.add(btnBack);
+        exibirPainel(panel);
+
+    }
+
+
+    private void exibirBuscarFaixaPreco(){
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        JLabel titulo = new JLabel("Buscar por Preço");
+        titulo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(titulo);
+        titulo.setFont(new Font("Arial", Font.BOLD, 16));
+        panel.add(Box.createVerticalStrut(20));
+     
+
+        JLabel precoMinimoLabel = new JLabel("Digite o Preço Mínimo");
+        precoMinimoLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JLabel precoMaximoLabel = new JLabel("Digite o Preço Máximo");
+        precoMaximoLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JTextField precoMinimoField = new JTextField(10);
+        precoMinimoField.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JTextField precoMaximoField = new JTextField(10);
+        precoMaximoField.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+
+
+
+
+
+        JButton btnBuscar = new JButton("Buscar");
+        btnBuscar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirResultadoBuscaFaixaPreco(Double.parseDouble(precoMinimoField.getText()) ,  Double.parseDouble(precoMaximoField.getText())  );
+            }
+        });
+        btnBuscar.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+
+        JButton btnBack = new JButton("Voltar");
+        btnBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirGerenciarEstoque();
+            }
+        });
+        btnBack.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
+        panel.add(precoMinimoLabel);
+        panel.add(precoMinimoField);
+        panel.add(Box.createVerticalStrut(10));
+        panel.add(precoMaximoLabel);
+        panel.add(precoMaximoField);
+        panel.add(Box.createVerticalStrut(10));
+        panel.add(btnBuscar);
+        panel.add(Box.createVerticalStrut(10));
+        panel.add(btnBack);
+        exibirPainel(panel);
+    }
+
+
+
+
+    private void exibirResultadoBuscaFaixaPreco(double precoMinimo, Double precoMaximo) {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        JLabel titulo = new JLabel("Sapatos Encontrados:");
+        titulo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(titulo);
+        titulo.setFont(new Font("Arial", Font.BOLD, 16));
+        panel.add(Box.createVerticalStrut(20));
+     
+        
+
+
+
+
+
+        JButton btnBack = new JButton("Voltar");
+        btnBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibirGerenciarEstoque();
+            }
+        });
+        btnBack.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
+
+        panel.add(btnBack);
+        exibirPainel(panel);
+
+    }
+
+
+
+
+
+
 
     private void exibirPainel(JPanel panel) {
         if (currentPanel != null) {

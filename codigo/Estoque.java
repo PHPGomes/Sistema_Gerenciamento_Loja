@@ -184,6 +184,34 @@ public class Estoque {
         return s.toString();
     }
 
+
+    public String compararMarcaPosicao(int pos , String Marca){
+        if(estoque.get(pos).getMarca().equals(Marca)){
+            return estoque.get(pos).toString();
+        }
+        return "0";
+    }
+
+    public boolean existeMarca(String marca){
+        for (Sapato s : estoque) {
+            if(s.getMarca().equals(marca)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public String getComparaSapatoPosicaoTipo(int c, String tipo){
+        if(estoque.get(c).getTipo().equals(tipo)){
+            return estoque.get(c).toString();
+        }
+        return "0";
+    }
+
+
+
+
+
     @Override
     public String toString() {
         String aux;

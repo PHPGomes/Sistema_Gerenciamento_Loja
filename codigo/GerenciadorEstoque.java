@@ -86,4 +86,16 @@ public class GerenciadorEstoque {
 
     }
 
+    public boolean existeMarca(String marca){
+        return estoque.existeMarca(marca);
+    }
+
+    public String compararMarcaPosicao(int pos , String Marca){
+        return estoque.compararMarcaPosicao(pos , Marca);
+    }
+
+    public String getComparaSapatoPosicaoTipo(int c, String tipo){
+        return estoque.getComparaSapatoPosicaoTipo(c,tipo);
+    }
+
 }
